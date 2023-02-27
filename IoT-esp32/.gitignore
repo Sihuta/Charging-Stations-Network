@@ -1,4 +1,4 @@
 .devcontainer/*
 .vscode/*
 build/*
-certs/*
+main/certs/*
