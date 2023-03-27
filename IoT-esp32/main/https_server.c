@@ -9,6 +9,9 @@
 #include "StationStates.h"
 #include "https_client.h"
 
+#include "esp_timer.h"
+#define TIMER_INTERVAL_US 1000000 // 1 second in microseconds
+
 #define LOGIN_URI "/login/"
 #define BACKEND_URL_URI "/backend_url/"
 #define STATION_ID_URI "/station_id/"
@@ -18,8 +21,6 @@
 #define USERS_FILE_NAME MOUNT_POINT"/user.csv"
 
 #define LOGIN_DATA_MAX_LENGTH 100
-#define BACKEND_URL_MAX_LENGTH 50
-#define STATION_ID_MAX_LENGTH 4
 #define REQ_ENERGY_MAX_LENGTH 6
 
 #define USERS_MAX_NUM 3
@@ -225,7 +226,7 @@ static esp_err_t root_get_handler(httpd_req_t *req)
 
 static esp_err_t rewrite_file(char* file_name, char* value)
 {
-    ESP_LOGI(TAG, "Rewriting value to the %s...", file_name);
+    ESP_LOGI(TAG, "Rewriting value (%s) to the %s...", value, file_name);
     FILE *f = fopen(file_name, "w");
     if (f == NULL) {
         ESP_LOGE(TAG, "Failed to open %s for writing", file_name);
@@ -242,9 +243,8 @@ static esp_err_t backend_url_post_handler(httpd_req_t *req)
     ESP_LOGI(TAG, "[backend_url_post_handler]");
     char backend_url[BACKEND_URL_MAX_LENGTH];
     strcpy(backend_url, req->uri + strlen(BACKEND_URL_URI));
-    SystemBackendUrl = backend_url;
     
-    if (ESP_FAIL == rewrite_file(BACKEND_URL_FILE_NAME, SystemBackendUrl)) {
+    if (ESP_FAIL == rewrite_file(BACKEND_URL_FILE_NAME, backend_url)) {
         return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR,
             "Backend URL can't be saved to the local storage");
     }
@@ -256,9 +256,8 @@ static esp_err_t station_id_post_handler(httpd_req_t *req)
     ESP_LOGI(TAG, "[station_id_post_handler]");
     char station_id[STATION_ID_MAX_LENGTH];
     strcpy(station_id, req->uri + strlen(STATION_ID_URI));
-    StationId = station_id;
     
-    if (ESP_FAIL == rewrite_file(STATION_ID_FILE_NAME, StationId)) {
+    if (ESP_FAIL == rewrite_file(STATION_ID_FILE_NAME, station_id)) {
         return httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR,
             "Station id can't be saved to the local storage");
     }
@@ -280,6 +279,57 @@ static char* get_datetime_now()
     strftime(buffer, size, "%d.%m.%Y %H:%M:%S", &timeinfo);
     
     return buffer;
+}
+
+static esp_timer_handle_t timer_handle;
+static uint32_t chargedEnergy = 0;
+static uint32_t requestedEnergy = 0;
+static bool chargingStarted = false;
+
+void stop_charging_timer()
+{
+  ESP_LOGI(TAG, "[stop_charging_timer]");
+  StationState = READY_STATE;
+
+  if (chargingStarted) {
+    // Stop the timer
+    esp_timer_stop(timer_handle);
+    esp_timer_delete(timer_handle);
+
+    chargedEnergy = 0;
+    requestedEnergy = 0;
+    chargingStarted = false;
+  }
+}
+
+static void timer_callback(void* arg)
+{
+  ++chargedEnergy;
+  ESP_LOGI(TAG, "timer_callback - %d", chargedEnergy);
+
+  if (chargedEnergy == requestedEnergy) {
+    stop_charging_timer();
+  }
+}
+
+void start_charging_timer(uint32_t energy)
+{
+  ESP_LOGI(TAG, "[start_charging_timer]");
+  requestedEnergy = energy;
+
+  if (!chargingStarted) {
+    // Start the timer
+    esp_timer_create_args_t timer_args = {
+        .callback = &timer_callback,
+        .arg = NULL,
+        .dispatch_method = ESP_TIMER_TASK,
+        .name = "charging_timer"
+    };
+    esp_timer_create(&timer_args, &timer_handle);
+    esp_timer_start_periodic(timer_handle, TIMER_INTERVAL_US);
+
+    chargingStarted = true;
+  }
 }
 
 static esp_err_t start_charging_post_handler(httpd_req_t *req)
@@ -306,9 +356,12 @@ static esp_err_t start_charging_post_handler(httpd_req_t *req)
 
     char requested_energy[REQ_ENERGY_MAX_LENGTH];
     strcpy(requested_energy, req->uri + strlen(START_CHARGING_URI));
-    ESP_LOGI(TAG, "Requested energy - %s", requested_energy);
+    // ESP_LOGI(TAG, "Requested energy - %s", requested_energy);
 
-    // send cmd to stm32 with requested energy
+    // start timer to stimulate charging
+    uint32_t requested = strtoul(requested_energy, NULL, 10);
+    ESP_LOGI(TAG, "Requested energy - %d", requested);
+    start_charging_timer(requested);
 
     return httpd_resp_sendstr(req, "Request was successfully processed!");
 }
@@ -316,37 +369,45 @@ static esp_err_t start_charging_post_handler(httpd_req_t *req)
 static esp_err_t stop_charging_get_handler(httpd_req_t *req)
 {
     ESP_LOGI(TAG, "[stop_charging_get_handler]");
-    // send cmd to stm32
-    // get charged energy
-    // check stm32 state
-    const char* temp = "20.5";
+    if (!Transaction) {
+        ESP_LOGE(TAG, "Memory for transaction wasn't allocated");
+        return ESP_FAIL;
+    }
+    // get charged energy from timer
+    char charged_energy[5];
+    sprintf(charged_energy, "%u", chargedEnergy);
+    stop_charging_timer();
 
     Transaction->end_datetime = get_datetime_now();
     ESP_LOGI(TAG, "Charging end datetime - %s", Transaction->end_datetime);
 
-    Transaction->charged_energy = temp; // replace with real value
+    Transaction->charged_energy = charged_energy;
     ESP_LOGI(TAG, "Charged energy - %s", Transaction->charged_energy);
 
     StationState = READY_STATE;
     https_client_post_transaction();
     https_client_post_state();
 
-    return httpd_resp_sendstr(req, temp);
+    free(Transaction);
+    return httpd_resp_sendstr(req, charged_energy);
 }
 
 static esp_err_t progress_get_handler(httpd_req_t *req)
 {
     ESP_LOGI(TAG, "[progress_get_handler]");
-    // get real value from stm32
-    const char* temp = "10.2";
-    return httpd_resp_sendstr(req, temp);
+
+    // get real value from timer
+    char charged_energy[5];
+    sprintf(charged_energy, "%u", chargedEnergy);
+
+    return httpd_resp_sendstr(req, charged_energy);
 }
 
 static esp_err_t plugged_in_get_handler(httpd_req_t *req)
 {
     ESP_LOGI(TAG, "[plugged_in_get_handler]");
-    // get real value from stm32
-    const char* temp = "1"; // 0 - false, 1 - true
+    const char* temp =
+      StationState == ERROR_STATE ? "0" : "1";
     return httpd_resp_sendstr(req, temp);
 }
 

@@ -21,16 +21,40 @@ void log_req_resp(esp_http_client_handle_t client)
 const char* get_req_url(const char* endpoint)
 {
     char* url = NULL;
-    asprintf(&url, "%s/%s/%s/%s", SystemBackendUrl, STA_CONTROLLER, StationId, endpoint);
+    char* backend_url = get_system_backend_url();
+    char* sta_id = get_station_id();
+
+    asprintf(&url, "%s/%s/%s/%s",
+      backend_url,
+      STA_CONTROLLER,
+      sta_id,
+      endpoint
+    );
+
+    free(backend_url);
+    free(sta_id);
     ESP_LOGI(TAG, "req_url - %s", url);
+
     return (const char*) url;
 }
 
 const char* get_state_req_url(const char* state)
 {
     char* url = NULL;
-    asprintf(&url, "%s/%s/%s/%s", SystemBackendUrl, STA_CONTROLLER, StationId, state);
+    char* backend_url = get_system_backend_url();
+    char* sta_id = get_station_id();
+
+    asprintf(&url, "%s/%s/%s/%s",
+      backend_url,
+      STA_CONTROLLER,
+      sta_id,
+      state
+    );
+
+    free(backend_url);
+    free(sta_id);
     ESP_LOGI(TAG, "state_req_url - %s", url);
+
     return (const char*) url;
 }
 
