@@ -1,1 +1,0 @@
-# Mobile part implemented for IOS to be used for the Charging-Stations-Network
