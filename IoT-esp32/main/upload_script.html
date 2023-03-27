@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charging Station</title>
+</head>
+<body style="margin: 20px;">
+    <div>
+        <div id="sta_settings">
+            <input id="station_id" type="number" min="1" placeholder="Enter station id">
+            <button id="save_id" type="button" onclick="saveStaId()">Save</button>
+            <span><b id="sta_post_resp"></b></span>
+        </div>
+        <button id="logoutBtn" onclick="logout()" style="position: fixed; right: 20px; top: 20px;">Log out</button>
+    </div>
+    <br>
+    <div id="backend_settings">
+        <input id="backend_url" type="text" size="50" placeholder="Enter backend url">
+        <button id="save_back" type="button" onclick="saveBackendUrl()">Save</button>
+        <span><b id="backend_post_resp"></b></span>
+    </div>
+
+    <br><br>
+    <p>Only for testing esp32 api routes in development mode</p>
+    <div>
+        <input id="post_uri" type="text" size="50" placeholder="Enter POST request uri">
+        <button id="post_btn" type="button" onclick="exec('post')">Post</button>
+        <span><b id="post_req_resp"></b></span>
+    </div><br>
+    <div>
+        <input id="get_uri" type="text" size="50" placeholder="Enter GET request uri">
+        <button id="get_btn" type="button" onclick="exec('get')">Get</button>
+        <span><b id="get_req_resp"></b></span>
+    </div>
+</body>
+</html>
+
+<script>
+const COOKIE_NAME = "user_id";
+
+function logout() {
+    removeCookie(COOKIE_NAME);
+    sendRequest("POST", "/logout");
+}
+
+function removeCookie(cname) {
+    document.cookie = cname + "=; " + "expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+function saveStaId() {
+    var id = document.getElementById("station_id").value;
+    sendRequest('POST', '/station_id/' + id, "sta_post_resp");
+}
+    
+function saveBackendUrl() {
+    var backendUrl = document.getElementById("backend_url").value;
+    if (backendUrl.trim() == "") {
+        alert("Fill in backend url to save it!");
+        return;
+    }
+
+    sendRequest('POST', '/backend_url/' + backendUrl, "backend_post_resp");
+}
+
+function exec(method) {
+    var uri = "/esp32/api" + document.getElementById(method + "_uri").value;
+    sendRequest(method.toUpperCase(), uri, method + "_req_resp");
+}
+
+function sendRequest(method, url, respTagId = null) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 200) {
+                    if (respTagId == null) {
+                        document.open();
+                        document.write(xhttp.responseText);
+                        document.close();
+                    } else {
+                        document.getElementById(respTagId).innerText = xhttp.responseText;
+                    }
+                } else if (xhttp.status == 0) {
+                    var details = navigator.userAgent;
+                    var regexp = /android|iphone|kindle|ipad/i;
+                    var isMobileDevice = regexp.test(details);
+
+                    if (!isMobileDevice) {
+                        alert("Server closed the connection abruptly!");
+                        location.reload();
+                    }
+                } else {
+                    alert(xhttp.status + " Error!\n" + xhttp.responseText);
+                    location.reload();
+                }
+            }
+            return false;
+        };
+    xhttp.open(method, url, true);
+    xhttp.send();
+}
+</script>
