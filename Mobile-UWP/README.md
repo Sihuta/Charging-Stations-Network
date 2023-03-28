@@ -1,0 +1,1 @@
+### Mobile part created for the UWP (Universal Windows Platform) to be used for the Charging-Stations-Network
