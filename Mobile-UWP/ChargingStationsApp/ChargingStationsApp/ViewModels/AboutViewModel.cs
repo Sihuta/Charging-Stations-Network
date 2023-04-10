@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using ChargingStationsApp.ViewModels.Shared;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

@@ -1,20 +1,20 @@
-﻿using ChargingStationsApp.Services;
-using ChargingStationsApp.Views;
-using System;
+﻿using ChargingStationsApp.Localization;
+using ChargingStationsApp.Services.Realizations;
+using ChargingStationsApp.Views.Shared;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ChargingStationsApp
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            DependencyService.Register<Localize>();
+            DependencyService.Register<UserService>();
+
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
