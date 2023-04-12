@@ -289,7 +289,9 @@ static bool chargingStarted = false;
 void stop_charging_timer()
 {
   ESP_LOGI(TAG, "[stop_charging_timer]");
-  StationState = READY_STATE;
+
+  char charged_energy[ENERGY_MAX_LENGTH];
+  sprintf(charged_energy, "%u", chargedEnergy);
 
   if (chargingStarted) {
     // Stop the timer
@@ -300,6 +302,16 @@ void stop_charging_timer()
     requestedEnergy = 0;
     chargingStarted = false;
   }
+
+  Transaction->end_datetime = get_datetime_now();
+  ESP_LOGI(TAG, "Charging end datetime - %s", Transaction->end_datetime);
+
+  Transaction->charged_energy = charged_energy;
+  ESP_LOGI(TAG, "Charged energy - %s", Transaction->charged_energy);
+
+  StationState = READY_STATE;
+  https_client_post_transaction();
+  https_client_post_state();
 }
 
 static void timer_callback(void* arg)
@@ -356,7 +368,6 @@ static esp_err_t start_charging_post_handler(httpd_req_t *req)
 
     char requested_energy[REQ_ENERGY_MAX_LENGTH];
     strcpy(requested_energy, req->uri + strlen(START_CHARGING_URI));
-    // ESP_LOGI(TAG, "Requested energy - %s", requested_energy);
 
     // start timer to stimulate charging
     uint32_t requested = strtoul(requested_energy, NULL, 10);
@@ -369,35 +380,32 @@ static esp_err_t start_charging_post_handler(httpd_req_t *req)
 static esp_err_t stop_charging_get_handler(httpd_req_t *req)
 {
     ESP_LOGI(TAG, "[stop_charging_get_handler]");
+    if (!chargingStarted) {
+      return httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Charging hasn't started yet.");
+    }
+
     if (!Transaction) {
         ESP_LOGE(TAG, "Memory for transaction wasn't allocated");
         return ESP_FAIL;
     }
-    // get charged energy from timer
-    char charged_energy[5];
-    sprintf(charged_energy, "%u", chargedEnergy);
+
     stop_charging_timer();
-
-    Transaction->end_datetime = get_datetime_now();
-    ESP_LOGI(TAG, "Charging end datetime - %s", Transaction->end_datetime);
-
-    Transaction->charged_energy = charged_energy;
-    ESP_LOGI(TAG, "Charged energy - %s", Transaction->charged_energy);
-
-    StationState = READY_STATE;
-    https_client_post_transaction();
-    https_client_post_state();
-
+    char charged[ENERGY_MAX_LENGTH];
+    sprintf(charged, "%s", Transaction->charged_energy);
     free(Transaction);
-    return httpd_resp_sendstr(req, charged_energy);
+
+    return httpd_resp_sendstr(req, charged);
 }
 
 static esp_err_t progress_get_handler(httpd_req_t *req)
 {
     ESP_LOGI(TAG, "[progress_get_handler]");
+    if (!chargingStarted) {
+      return httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "Charging hasn't started yet.");
+    }
 
     // get real value from timer
-    char charged_energy[5];
+    char charged_energy[ENERGY_MAX_LENGTH];
     sprintf(charged_energy, "%u", chargedEnergy);
 
     return httpd_resp_sendstr(req, charged_energy);
