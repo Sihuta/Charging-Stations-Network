@@ -27,6 +27,31 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Subtitle"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="Gainsboro"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            </Style>
+            <Style TargetType="CheckBox">
+                <Setter Property="Color" Value="DeepPink"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style TargetType="StackLayout">
+                <!--<Setter Property="Orientation" Value="Horizontal"/>-->
+                <Setter Property="Spacing" Value="0"/>
+            </Style>
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="DarkSlateGray"/>
+                <Setter Property="WidthRequest" Value="1"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            </Style>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>

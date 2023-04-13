@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:ChargingStationsApp.Views"
+       xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
        xmlns:shared="clr-namespace:ChargingStationsApp.Views.Shared"
-       Title="ChargingStationsApp"
+       xmlns:admin="clr-namespace:ChargingStationsApp.Views.Admin"
+       xmlns:root="clr-namespace:ChargingStationsApp"
+       Title="Charging-Stations-Network"
        x:Class="ChargingStationsApp.AppShell">
 
     <Shell.Resources>
@@ -21,6 +23,9 @@
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
             <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
 
             <Style Class="FlyoutItemLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"></Setter>
@@ -31,7 +36,7 @@
                         <VisualStateGroup x:Name="CommonStates">
                             <VisualState x:Name="Normal">
                                 <VisualState.Setters>
-                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
+                                    <Setter Property="BackgroundColor" Value="White" />
                                     <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
                                 </VisualState.Setters>
                             </VisualState>
@@ -62,11 +67,19 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Login" Icon="icon_about.png" Route="LoginPage" ContentTemplate="{DataTemplate shared:LoginPage}" />
+        <ShellContent Title="{l10n:Translate Profile}"
+                      Route="ProfilePage"
+                      ContentTemplate="{DataTemplate shared:ProfilePage}" />
+        <ShellContent Title="{l10n:Translate Stations}"
+                      Route="StationsPage"
+                      ContentTemplate="{DataTemplate admin:StationsPage}"
+                      IsVisible="{x:Static root:App.IsAdmin}"/>
+        <ShellContent Title="{l10n:Translate Transactions}"
+                      Route="TransactionsPage"
+                      ContentTemplate="{DataTemplate shared:TransactionsPage}" />
+        <ShellContent Title="{l10n:Translate Admins}"
+                      Route="AdminsPage"
+                      ContentTemplate="{DataTemplate admin:AdminsPage}"
+                      IsVisible="{x:Static root:App.IsAdmin}"/>
     </TabBar>
-
-    <!--<TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate shared:LoginPage}" />
-    </TabBar>-->
 </Shell>
