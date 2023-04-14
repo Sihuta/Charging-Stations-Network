@@ -120,8 +120,38 @@
   <data name="Admins" xml:space="preserve">
     <value>Admins</value>
   </data>
+  <data name="CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChangePasswordTitle" xml:space="preserve">
+    <value>Changing password</value>
+  </data>
+  <data name="ConfirmBtn" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="InvalidInputFillMsg" xml:space="preserve">
+    <value>Fill in all of the fields.</value>
+  </data>
+  <data name="InvalidInputNewPassMsg" xml:space="preserve">
+    <value>Check new password, you entered different values.</value>
+  </data>
+  <data name="InvalidInputOldPassMsg" xml:space="preserve">
+    <value>Check old password, it's incorrect.</value>
+  </data>
+  <data name="InvalidInputSamePassMsg" xml:space="preserve">
+    <value>New password is the same as the old one.</value>
+  </data>
+  <data name="InvalidInputTitle" xml:space="preserve">
+    <value>Invalid input</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -138,11 +168,35 @@
   <data name="Logout" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old password</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="SaveBtn" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveFailMsg" xml:space="preserve">
+    <value>User with such email already exists.</value>
+  </data>
+  <data name="SaveFailTitle" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="SaveSuccessMsg" xml:space="preserve">
+    <value>Data was saved</value>
+  </data>
+  <data name="SaveSuccessTitle" xml:space="preserve">
+    <value>Success</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Stations</value>

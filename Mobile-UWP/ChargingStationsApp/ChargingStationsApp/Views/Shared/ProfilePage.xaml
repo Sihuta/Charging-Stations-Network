@@ -1,12 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:shared="clr-namespace:ChargingStationsApp.ViewModels.Shared"
+             x:DataType="shared:ProfileViewModel"
              x:Class="ChargingStationsApp.Views.Shared.ProfilePage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{l10n:Translate ChangePassword}" Command="{Binding ChangePasswordCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="15">
+            <TableView Intent="Settings">
+                <TableView.Root>
+                    <TableRoot>
+                        <TableSection Title="">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{l10n:Translate Email}"/>
+                                    <Entry x:Name="email" Text="{Binding Email}" WidthRequest="250" Margin="0,5,0,0"/>
+                                </StackLayout>
+                            </ViewCell>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{l10n:Translate Role}"/>
+                                    <Entry x:Name="socionicType" IsReadOnly="True" Text="{Binding Role}" WidthRequest="250" Margin="0,5,0,0"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                        <TableSection Title=" ">
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                </StackLayout>
+                            </ViewCell>
+                        </TableSection>
+                    </TableRoot>
+                </TableView.Root>
+            </TableView>
+            <Button HorizontalOptions="Center" Text="{l10n:Translate SaveBtn}" Command="{Binding SaveCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -7,9 +7,6 @@ namespace ChargingStationsApp
 {
     public partial class App : Application
     {
-        public static bool IsAdmin { get => true; }
-        public static bool IsUser { get => false; }
-
         public App()
         {
             InitializeComponent();

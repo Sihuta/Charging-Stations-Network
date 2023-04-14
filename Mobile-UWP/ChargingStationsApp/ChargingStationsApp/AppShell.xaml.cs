@@ -11,6 +11,7 @@ namespace ChargingStationsApp
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

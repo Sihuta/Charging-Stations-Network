@@ -1,4 +1,5 @@
-﻿using ChargingStationsApp.Localization;
+﻿using ChargingStationsApp.Extensions;
+using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
 using Xamarin.Forms;
 
@@ -15,7 +16,7 @@ namespace ChargingStationsApp.ViewModels.Shared
         {
             userService = DependencyService.Get<IUserService>();
 
-            LoginCommand = new Command(OnLogin, ValidateLogin);
+            LoginCommand = new Command(OnLoginClicked, ValidateLogin);
             PropertyChanged +=
                 (_, __) => LoginCommand.ChangeCanExecute();
         }
@@ -34,32 +35,23 @@ namespace ChargingStationsApp.ViewModels.Shared
             set => SetProperty(ref password, value);
         }
 
-        private bool ValidateLogin(object obj)
+        private bool ValidateLogin(object _)
         {
             return !string.IsNullOrWhiteSpace(email)
                 && !string.IsNullOrWhiteSpace(password);
         }
 
-        private async void OnLogin(object obj)
+        private async void OnLoginClicked(object _)
         {
-            var login = await userService.LoginAsync(email, password);
-            if (!login)
+            SessionInfo.User = await userService.LoginAsync(email, password);
+            if (SessionInfo.User != null)
             {
-                string title = TranslateExtension.GetValue("LoginFailTitle");
-                string msg = TranslateExtension.GetValue("LoginFailMsg");
-
-                await Application.Current.MainPage.DisplayAlert(title, msg, "OK");
+                Application.Current.MainPage = new AppShell();
                 return;
             }
 
-            //Debug.WriteLine(res.Role);
-            //var employee = await EmployeeService.GetByUserId(res.Id);
-
-            //App.User = res;
-            //App.UserPassword = Password;
-            //App.EmployeeId = employee.Id;
-
-            Application.Current.MainPage = new AppShell();
+            await Application.Current.MainPage.DisplayLocalizedAlert(
+                "LoginFailTitle", "LoginFailMsg");
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using ChargingStationsApp.Models;
+using System.Threading.Tasks;
 
 namespace ChargingStationsApp.Services.Interfaces
 {
     internal interface IUserService
     {
-        Task<bool> LoginAsync(string email, string password);
+        Task<User> LoginAsync(string email, string password);
+        Task<User> LoadUserAsync(int id);
+        Task<bool> UpdateUserAsync(User user);
     }
 }

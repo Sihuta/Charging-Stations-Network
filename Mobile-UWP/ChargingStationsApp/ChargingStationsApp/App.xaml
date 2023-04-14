@@ -44,7 +44,7 @@
             </Style>
             <Style TargetType="StackLayout">
                 <!--<Setter Property="Orientation" Value="Horizontal"/>-->
-                <Setter Property="Spacing" Value="0"/>
+                <!--<Setter Property="Spacing" Value="0"/>-->
             </Style>
             <Style TargetType="BoxView">
                 <Setter Property="BackgroundColor" Value="DarkSlateGray"/>

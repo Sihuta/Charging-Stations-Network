@@ -10,8 +10,7 @@
         <StackLayout Orientation="Vertical"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
-            <Entry x:Name="login"
-                   Text="{Binding Email}"
+            <Entry Text="{Binding Email}"
                    Placeholder="{l10n:Translate Email}"
                    BackgroundColor="White"
                    TextColor="Black"
@@ -20,8 +19,7 @@
                    WidthRequest="250"
                    HorizontalTextAlignment="Start"
                            />
-            <Entry x:Name="password"
-                   Text="{Binding Password}"
+            <Entry Text="{Binding Password}"
                    Placeholder="{l10n:Translate Password}"
                    BackgroundColor="White"
                    TextColor="Black"
