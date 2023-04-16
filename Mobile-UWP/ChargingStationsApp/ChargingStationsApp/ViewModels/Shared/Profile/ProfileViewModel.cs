@@ -2,11 +2,11 @@
 using ChargingStationsApp.Models;
 using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
-using ChargingStationsApp.Views.Shared;
+using ChargingStationsApp.Views.Shared.Profile;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ChargingStationsApp.ViewModels.Shared
+namespace ChargingStationsApp.ViewModels.Shared.Profile
 {
     [QueryProperty(nameof(UserId), nameof(UserId))]
     internal class ProfileViewModel : BaseViewModel
@@ -81,7 +81,7 @@ namespace ChargingStationsApp.ViewModels.Shared
 
         private async Task LoadUserAsync(int id)
         {
-            var user = await userService.LoadUserAsync(id);
+            var user = await userService.GetUserAsync(id);
 
             Email = user.Email;
             Password = user.Password;
@@ -106,7 +106,7 @@ namespace ChargingStationsApp.ViewModels.Shared
             else
             {
                 await Application.Current.MainPage.DisplayLocalizedAlert(
-                    "SaveFailTitle", "SaveFailMsg");
+                    "SaveFailTitle", "SaveProfileFailMsg");
             }
         }
 

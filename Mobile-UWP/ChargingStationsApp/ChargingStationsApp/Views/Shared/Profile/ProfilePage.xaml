@@ -2,9 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
-             xmlns:shared="clr-namespace:ChargingStationsApp.ViewModels.Shared"
-             x:DataType="shared:ProfileViewModel"
-             x:Class="ChargingStationsApp.Views.Shared.ProfilePage">
+             xmlns:profile="clr-namespace:ChargingStationsApp.ViewModels.Shared.Profile"
+             x:DataType="profile:ProfileViewModel"
+             x:Class="ChargingStationsApp.Views.Shared.Profile.ProfilePage">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{l10n:Translate ChangePassword}" Command="{Binding ChangePasswordCommand}" />
@@ -19,7 +19,7 @@
                             <ViewCell>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{l10n:Translate Email}"/>
-                                    <Entry x:Name="email" Text="{Binding Email}" WidthRequest="250" Margin="0,5,0,0"/>
+                                    <Entry x:Name="email" Text="{Binding Email}" Keyboard="Email" WidthRequest="250" Margin="0,5,0,0"/>
                                 </StackLayout>
                             </ViewCell>
                             <ViewCell>

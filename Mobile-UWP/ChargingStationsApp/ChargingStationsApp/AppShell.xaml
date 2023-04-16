@@ -5,6 +5,8 @@
        xmlns:shared="clr-namespace:ChargingStationsApp.Views.Shared"
        xmlns:admin="clr-namespace:ChargingStationsApp.Views.Admin"
        xmlns:services="clr-namespace:ChargingStationsApp.Services"
+       xmlns:profile="clr-namespace:ChargingStationsApp.Views.Shared.Profile"
+       xmlns:stations="clr-namespace:ChargingStationsApp.Views.Admin.Stations"
        Title="Charging-Stations-Network"
        x:Class="ChargingStationsApp.AppShell">
 
@@ -69,10 +71,10 @@
     <TabBar>
         <ShellContent Title="{l10n:Translate Profile}"
                       Route="ProfilePage"
-                      ContentTemplate="{DataTemplate shared:ProfilePage}" />
+                      ContentTemplate="{DataTemplate profile:ProfilePage}" />
         <ShellContent Title="{l10n:Translate Stations}"
                       Route="StationsPage"
-                      ContentTemplate="{DataTemplate admin:StationsPage}"
+                      ContentTemplate="{DataTemplate stations:StationsPage}"
                       IsVisible="{x:Static services:SessionInfo.IsAdmin}"/>
         <ShellContent Title="{l10n:Translate Transactions}"
                       Route="TransactionsPage"

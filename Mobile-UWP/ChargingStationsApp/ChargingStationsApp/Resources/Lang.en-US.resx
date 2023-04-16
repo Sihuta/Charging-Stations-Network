@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddBtn" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddStationTitle" xml:space="preserve">
+    <value>Adding station</value>
+  </data>
   <data name="Admins" xml:space="preserve">
     <value>Admins</value>
   </data>
@@ -135,8 +141,23 @@
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirm new password</value>
   </data>
+  <data name="ConfirmRemoveMsg" xml:space="preserve">
+    <value>Are you sure you want to remove it?</value>
+  </data>
+  <data name="ConfirmRemoveTitle" xml:space="preserve">
+    <value>Confirm the removal</value>
+  </data>
+  <data name="ConnectorType" xml:space="preserve">
+    <value>Connector type</value>
+  </data>
+  <data name="ConnectorTypePicker" xml:space="preserve">
+    <value>Select a connector type...</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="FailMsg" xml:space="preserve">
+    <value>Something went wrong. Try later.</value>
   </data>
   <data name="InvalidInputFillMsg" xml:space="preserve">
     <value>Fill in all of the fields.</value>
@@ -153,6 +174,9 @@
   <data name="InvalidInputTitle" xml:space="preserve">
     <value>Invalid input</value>
   </data>
+  <data name="Latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -168,8 +192,17 @@
   <data name="Logout" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="Longtitude" xml:space="preserve">
+    <value>Longtitude</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
+  </data>
+  <data name="NoBtn" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="OldPassword" xml:space="preserve">
     <value>Old password</value>
@@ -186,22 +219,31 @@
   <data name="SaveBtn" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="SaveFailMsg" xml:space="preserve">
-    <value>User with such email already exists.</value>
-  </data>
   <data name="SaveFailTitle" xml:space="preserve">
     <value>Fail</value>
   </data>
+  <data name="SaveProfileFailMsg" xml:space="preserve">
+    <value>User with such email already exists.</value>
+  </data>
   <data name="SaveSuccessMsg" xml:space="preserve">
-    <value>Data was saved</value>
+    <value>Data was saved.</value>
   </data>
   <data name="SaveSuccessTitle" xml:space="preserve">
     <value>Success</value>
+  </data>
+  <data name="StationAddedMsg" xml:space="preserve">
+    <value>Station was successfully added with ID:</value>
+  </data>
+  <data name="StationDetailsTitle" xml:space="preserve">
+    <value>Station details</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Stations</value>
   </data>
   <data name="Transactions" xml:space="preserve">
     <value>Transactions</value>
+  </data>
+  <data name="YesBtn" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

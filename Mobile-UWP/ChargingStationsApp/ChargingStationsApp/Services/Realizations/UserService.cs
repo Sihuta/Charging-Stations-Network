@@ -14,7 +14,7 @@ namespace ChargingStationsApp.Services.Realizations
             Role = "admin"
         };
 
-        public async Task<User> LoadUserAsync(int id)
+        public async Task<User> GetUserAsync(int id)
         {
             return await Task.FromResult(testUser);
         }

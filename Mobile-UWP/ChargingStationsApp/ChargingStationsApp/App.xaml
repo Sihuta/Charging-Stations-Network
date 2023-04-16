@@ -7,7 +7,7 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#2640ad</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
@@ -33,21 +33,21 @@
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
             <Style TargetType="Entry">
-                <Setter Property="TextColor" Value="Black"/>
-                <Setter Property="BackgroundColor" Value="Gainsboro"/>
+                <!--<Setter Property="TextColor" Value="Black"/>
+                <Setter Property="BackgroundColor" Value="Gainsboro"/>-->
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
             </Style>
             <Style TargetType="CheckBox">
-                <Setter Property="Color" Value="DeepPink"/>
+                <!--<Setter Property="Color" Value="DeepPink"/>-->
                 <Setter Property="HorizontalOptions" Value="Start"/>
             </Style>
-            <Style TargetType="StackLayout">
-                <!--<Setter Property="Orientation" Value="Horizontal"/>-->
-                <!--<Setter Property="Spacing" Value="0"/>-->
+            <Style TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="HeightRequest" Value="30"/>
             </Style>
             <Style TargetType="BoxView">
-                <Setter Property="BackgroundColor" Value="DarkSlateGray"/>
+                <!--<Setter Property="BackgroundColor" Value="DarkSlateGray"/>-->
                 <Setter Property="WidthRequest" Value="1"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"/>

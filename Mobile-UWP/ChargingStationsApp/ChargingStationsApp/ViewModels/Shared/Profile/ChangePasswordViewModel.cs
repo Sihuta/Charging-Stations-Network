@@ -4,7 +4,7 @@ using ChargingStationsApp.Services.Interfaces;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace ChargingStationsApp.ViewModels.Shared
+namespace ChargingStationsApp.ViewModels.Shared.Profile
 {
     class ChangePasswordViewModel : BaseViewModel
     {
@@ -65,7 +65,7 @@ namespace ChargingStationsApp.ViewModels.Shared
                 else
                 {
                     await Application.Current.MainPage.DisplayLocalizedAlert(
-                        "SaveFailTitle", "SaveFailMsg");
+                        "SaveFailTitle", "FailMsg");
                 }
 
                 await Shell.Current.GoToAsync("..");

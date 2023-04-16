@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:models="clr-namespace:ChargingStationsApp.Models"
+             xmlns:stations="clr-namespace:ChargingStationsApp.ViewModels.Admin.Stations"
+             x:DataType="stations:StationsViewModel"
+             x:Class="ChargingStationsApp.Views.Admin.Stations.StationsPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{l10n:Translate AddBtn}" Command="{Binding AddStationCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView x:DataType="stations:StationsViewModel"
+                 Command="{Binding LoadStationsCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                 >
+        <CollectionView x:Name="ItemsListView"
+                        ItemsSource="{Binding Stations}"
+                        SelectionMode="None"
+                        >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="models:Station" Orientation="Horizontal">
+                        <Frame Padding="10" BorderColor="Black">
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="18"
+                                       />
+                                <Label Text="{Binding ConnectorType.Name}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="16"
+                                       />
+                                <StackLayout Orientation="Horizontal" Spacing="6">
+                                    <Label Text="{Binding Latitude}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="12"
+                                       />
+                                    <Label Text="{Binding Longitude}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="12"
+                                       />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                        <ImageButton Source="icon_about.png"
+                                     Command="{Binding Source={RelativeSource AncestorType={x:Type stations:StationsViewModel}}, Path=RemoveStation}"
+                                     CommandParameter="{Binding Id}"
+                                     WidthRequest="30"
+                                     HeightRequest="30"
+                                     BackgroundColor="White"
+                                     HorizontalOptions="EndAndExpand"
+                                     VerticalOptions="Center"
+                                     />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type stations:StationsViewModel}}, Path=StationTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
