@@ -31,7 +31,6 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
                 async (station) => await OnStationTappedAsync(station));
             RemoveStation = new Command<int>(
                 async (id) => await OnRemoveStationAsync(id));
-
         }
 
         public ObservableCollection<Station> Stations { get; }

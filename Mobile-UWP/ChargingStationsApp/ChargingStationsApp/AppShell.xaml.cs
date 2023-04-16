@@ -1,4 +1,5 @@
-﻿using ChargingStationsApp.Views.Admin.Stations;
+﻿using ChargingStationsApp.Views.Admin.Admins;
+using ChargingStationsApp.Views.Admin.Stations;
 using ChargingStationsApp.Views.Shared;
 using ChargingStationsApp.Views.Shared.Profile;
 using System;
@@ -17,6 +18,8 @@ namespace ChargingStationsApp
 
             Routing.RegisterRoute(nameof(AddStationPage), typeof(AddStationPage));
             Routing.RegisterRoute(nameof(StationDetailsPage), typeof(StationDetailsPage));
+
+            Routing.RegisterRoute(nameof(AddAdminPage), typeof(AddAdminPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

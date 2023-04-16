@@ -22,33 +22,33 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="models:Station" Orientation="Horizontal">
-                        <Frame Padding="10" BorderColor="Black">
-                            <StackLayout>
-                                <Label Text="{Binding Name}"
+                        <Frame Padding="10" BorderColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="18"
                                        />
-                                <Label Text="{Binding ConnectorType.Name}"
+                                    <Label Text="{Binding ConnectorType.Name}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="16"
                                        />
-                                <StackLayout Orientation="Horizontal" Spacing="6">
-                                    <Label Text="{Binding Latitude}"
+                                    <StackLayout Orientation="Horizontal" Spacing="6">
+                                        <Label Text="{Binding Latitude}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="12"
                                        />
-                                    <Label Text="{Binding Longitude}"
+                                        <Label Text="{Binding Longitude}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
                                        FontSize="12"
                                        />
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                        <ImageButton Source="Resources/remove_icon.png"
+                                <ImageButton Source="Resources/remove_icon.png"
                                      Command="{Binding Source={RelativeSource AncestorType={x:Type stations:StationsViewModel}}, Path=RemoveStation}"
                                      CommandParameter="{Binding Id}"
                                      WidthRequest="30"
@@ -57,6 +57,8 @@
                                      HorizontalOptions="EndAndExpand"
                                      VerticalOptions="Center"
                                      />
+                            </StackLayout>
+                        </Frame>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer
                                 NumberOfTapsRequired="1"

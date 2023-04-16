@@ -107,7 +107,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
 
         private async Task OnSaveAsync()
         {
-            var staId = await stationService.AddStationAsync(station);
+            var staId = await stationService.CreateStationAsync(station);
             if (staId == 0)
             {
                 await Application.Current.MainPage.DisplayLocalizedAlert(

@@ -3,7 +3,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
        xmlns:shared="clr-namespace:ChargingStationsApp.Views.Shared"
-       xmlns:admin="clr-namespace:ChargingStationsApp.Views.Admin"
+       xmlns:admins="clr-namespace:ChargingStationsApp.Views.Admin.Admins"
        xmlns:services="clr-namespace:ChargingStationsApp.Services"
        xmlns:profile="clr-namespace:ChargingStationsApp.Views.Shared.Profile"
        xmlns:stations="clr-namespace:ChargingStationsApp.Views.Admin.Stations"
@@ -81,7 +81,7 @@
                       ContentTemplate="{DataTemplate shared:TransactionsPage}" />
         <ShellContent Title="{l10n:Translate Admins}"
                       Route="AdminsPage"
-                      ContentTemplate="{DataTemplate admin:AdminsPage}"
+                      ContentTemplate="{DataTemplate admins:AdminsPage}"
                       IsVisible="{x:Static  services:SessionInfo.IsAdmin}"/>
     </TabBar>
 </Shell>

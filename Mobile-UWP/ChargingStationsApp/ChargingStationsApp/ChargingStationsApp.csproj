@@ -23,7 +23,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Admin\AdminsPage.xaml">
+    <EmbeddedResource Update="Views\Admin\Admins\AddAdminPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Admin\Admins\AdminsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Admin\Stations\AddStationPage.xaml">

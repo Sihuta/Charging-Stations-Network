@@ -47,7 +47,7 @@ namespace ChargingStationsApp.Services.Realizations
             }
         };
 
-        public async Task<int> AddStationAsync(Station station)
+        public async Task<int> CreateStationAsync(Station station)
         {
             return await Task.FromResult(1);
         }

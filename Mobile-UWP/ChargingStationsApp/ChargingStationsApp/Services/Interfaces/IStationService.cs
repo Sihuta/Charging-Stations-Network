@@ -8,7 +8,7 @@ namespace ChargingStationsApp.Services.Interfaces
     {
         Task<ICollection<Station>> GetStationsAsync();
         Task<Station> GetStationAsync(int id);
-        Task<int> AddStationAsync(Station station);
+        Task<int> CreateStationAsync(Station station);
         Task<bool> UpdateStationAsync(Station station);
         Task<bool> DeleteStationAsync(int id);
 
