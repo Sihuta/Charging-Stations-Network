@@ -57,7 +57,8 @@ namespace ChargingStationsApp.ViewModels.Admin.Admins
         private bool ValidateSave(object _)
         {
             return !string.IsNullOrWhiteSpace(email)
-                && !string.IsNullOrWhiteSpace(password);
+                && !string.IsNullOrWhiteSpace(password)
+                && email.IsValidEmailAddress();
         }
 
         private async Task OnSaveAsync()
