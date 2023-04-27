@@ -53,7 +53,6 @@
                                      CommandParameter="{Binding Id}"
                                      WidthRequest="30"
                                      HeightRequest="30"
-                                     BackgroundColor="White"
                                      HorizontalOptions="EndAndExpand"
                                      VerticalOptions="Center"
                                      />
