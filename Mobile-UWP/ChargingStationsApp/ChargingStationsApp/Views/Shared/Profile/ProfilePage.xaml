@@ -11,7 +11,36 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Margin="15">
+        <StackLayout Spacing="5" Padding="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Email}"/>
+                <Entry x:Name="email" Text="{Binding Email}" Keyboard="Email" WidthRequest="250" Margin="0,5,0,0"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Role}"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="230"
+                       HeightRequest="20"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label Text="{Binding Role}"
+                           LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           FontAttributes="Italic"
+                           />
+                </Frame>
+            </StackLayout>
+            <Button Text="{l10n:Translate SaveBtn}"
+                    Command="{Binding SaveCommand}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand"
+                    />
+        </StackLayout>
+        
+        <!--<StackLayout Margin="15">
             <TableView Intent="Settings">
                 <TableView.Root>
                     <TableRoot>
@@ -38,7 +67,7 @@
                     </TableRoot>
                 </TableView.Root>
             </TableView>
-            <Button HorizontalOptions="Center" Text="{l10n:Translate SaveBtn}" Command="{Binding SaveCommand}"/>
-        </StackLayout>
+            <Button HorizontalOptions="CenterAndExpand" Text="{l10n:Translate SaveBtn}" Command="{Binding SaveCommand}"/>
+        </StackLayout>-->
     </ContentPage.Content>
 </ContentPage>
