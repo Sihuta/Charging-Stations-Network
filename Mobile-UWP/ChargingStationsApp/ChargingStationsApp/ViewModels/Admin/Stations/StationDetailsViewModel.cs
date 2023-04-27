@@ -17,12 +17,13 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
         private double longitude;
         private ConnectorType connectorType;
 
-        private readonly Station station;
+        private Station oldStation;
+        private readonly Station newStation;
         private readonly IStationService stationService;
 
         public StationDetailsViewModel()
         {
-            station = new Station();
+            newStation = new Station();
             stationService = DependencyService.Get<IStationService>();
             
             ConnectorTypes = new ObservableCollection<ConnectorType>();
@@ -45,7 +46,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
             set
             {
                 stationId = value;
-                station.Id = value;
+                newStation.Id = value;
             }
         }
 
@@ -55,7 +56,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
             set
             {
                 SetProperty(ref name, value);
-                station.Name = value;
+                newStation.Name = value;
             }
         }
 
@@ -67,7 +68,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
                 if (double.TryParse(value, out double val))
                 {
                     SetProperty(ref latitude, val);
-                    station.Latitude = val;
+                    newStation.Latitude = val;
                 }
             }
         }
@@ -80,7 +81,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
                 if (double.TryParse(value, out double val))
                 {
                     SetProperty(ref longitude, val);
-                    station.Longitude = val;
+                    newStation.Longitude = val;
                 }
             }
         }
@@ -91,7 +92,7 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
             set
             {
                 SetProperty(ref connectorType, value);
-                station.ConnectorType = connectorType;
+                newStation.ConnectorType = connectorType;
             }
         }
 
@@ -112,12 +113,12 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
 
         private async Task LoadStationAsync()
         {
-            var sta = await stationService.GetStationAsync(stationId);
+            oldStation = await stationService.GetStationAsync(stationId);
 
-            Name = sta.Name;
-            Latitude = sta.Latitude.ToString();
-            Longtitude = sta.Longitude.ToString();
-            ConnectorType = sta.ConnectorType;
+            Name = oldStation.Name;
+            Latitude = oldStation.Latitude.ToString();
+            Longtitude = oldStation.Longitude.ToString();
+            ConnectorType = oldStation.ConnectorType;
         }
 
         private bool ValidateSave(object _)
@@ -125,12 +126,17 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
             return !string.IsNullOrWhiteSpace(name)
                 && latitude != 0
                 && longitude != 0
-                && connectorType != null;
+                && connectorType != null
+
+                && (name != oldStation.Name
+                || latitude != oldStation.Latitude
+                || longitude != oldStation.Longitude
+                || connectorType != oldStation.ConnectorType);
         }
 
         private async Task OnSaveAsync()
         {
-            var res = await stationService.UpdateStationAsync(station);
+            var res = await stationService.UpdateStationAsync(newStation);
             if (res)
             {
                 await Application.Current.MainPage.DisplayLocalizedAlert(
