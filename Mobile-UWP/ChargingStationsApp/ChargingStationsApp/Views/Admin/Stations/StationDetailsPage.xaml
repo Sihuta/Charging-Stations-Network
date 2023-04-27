@@ -32,7 +32,7 @@
                         />
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" Spacing="20" Margin="20">
+            <StackLayout Orientation="Horizontal" Spacing="20" Margin="0, 20">
                 <Button Text="{l10n:Translate CancelBtn}" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
                 <Button Text="{l10n:Translate SaveBtn}" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
