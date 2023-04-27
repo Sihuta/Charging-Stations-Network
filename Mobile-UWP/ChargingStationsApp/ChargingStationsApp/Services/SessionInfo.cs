@@ -7,5 +7,7 @@ namespace ChargingStationsApp.Services
         public static bool IsAdmin { get => User.Role == "admin"; }
         public static bool IsClient { get => !IsAdmin; }
         public static User User { get; set; }
+
+        public static SearchOptions TransactionSearchOptions = new SearchOptions();
     }
 }

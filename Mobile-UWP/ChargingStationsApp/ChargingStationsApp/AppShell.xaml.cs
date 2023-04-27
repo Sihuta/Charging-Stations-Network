@@ -2,6 +2,7 @@
 using ChargingStationsApp.Views.Admin.Stations;
 using ChargingStationsApp.Views.Shared;
 using ChargingStationsApp.Views.Shared.Profile;
+using ChargingStationsApp.Views.Shared.Transactions;
 using System;
 using Xamarin.Forms;
 
@@ -15,10 +16,11 @@ namespace ChargingStationsApp
 
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
+            Routing.RegisterRoute(nameof(TransactionDetailsPage), typeof(TransactionDetailsPage));
+            Routing.RegisterRoute(nameof(SearchOptionsPage), typeof(SearchOptionsPage));
 
             Routing.RegisterRoute(nameof(AddStationPage), typeof(AddStationPage));
             Routing.RegisterRoute(nameof(StationDetailsPage), typeof(StationDetailsPage));
-
             Routing.RegisterRoute(nameof(AddAdminPage), typeof(AddAdminPage));
         }
 

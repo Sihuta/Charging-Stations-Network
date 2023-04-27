@@ -4,7 +4,8 @@
              xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
              xmlns:admins="clr-namespace:ChargingStationsApp.ViewModels.Admin.Admins"
              x:DataType="admins:AddAdminViewModel"
-             x:Class="ChargingStationsApp.Views.Admin.Admins.AddAdminPage">
+             x:Class="ChargingStationsApp.Views.Admin.Admins.AddAdminPage"
+             Title="{l10n:Translate AddAdminTitle}">
     <ContentPage.Content>
         <StackLayout Spacing="5" Padding="15">
             <StackLayout Orientation="Horizontal">

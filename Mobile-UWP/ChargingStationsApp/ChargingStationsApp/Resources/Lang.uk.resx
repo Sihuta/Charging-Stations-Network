@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddAdminTitle" xml:space="preserve">
+    <value>Додавання адміністратора</value>
+  </data>
   <data name="AddBtn" xml:space="preserve">
     <value>Додати</value>
   </data>
@@ -126,6 +129,15 @@
   <data name="Admins" xml:space="preserve">
     <value>Адміністратори</value>
   </data>
+  <data name="ApplyBtn" xml:space="preserve">
+    <value>Застосувати</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Зростання</value>
+  </data>
+  <data name="CancelAll" xml:space="preserve">
+    <value>Скасувати все</value>
+  </data>
   <data name="CancelBtn" xml:space="preserve">
     <value>Скасувати</value>
   </data>
@@ -134,6 +146,15 @@
   </data>
   <data name="ChangePasswordTitle" xml:space="preserve">
     <value>Зміна паролю</value>
+  </data>
+  <data name="ChargedEnergy" xml:space="preserve">
+    <value>Заряджена енергія</value>
+  </data>
+  <data name="ChargingEnd" xml:space="preserve">
+    <value>Кінець зарядки</value>
+  </data>
+  <data name="ChargingStart" xml:space="preserve">
+    <value>Початок зарядки</value>
   </data>
   <data name="ConfirmBtn" xml:space="preserve">
     <value>Підтвердити</value>
@@ -153,11 +174,29 @@
   <data name="ConnectorTypePicker" xml:space="preserve">
     <value>Оберіть тип роз'єму...</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>грн</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Спадання</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Електронна пошта</value>
   </data>
+  <data name="Energy" xml:space="preserve">
+    <value>Енергія</value>
+  </data>
+  <data name="EnergyUnit" xml:space="preserve">
+    <value>кВт-год</value>
+  </data>
   <data name="FailMsg" xml:space="preserve">
     <value>Щось пішло не так, спробуйте пізніше.</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>З</value>
   </data>
   <data name="InvalidInputFillMsg" xml:space="preserve">
     <value>Заповніть усі поля.</value>
@@ -176,6 +215,9 @@
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Широта</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Локація</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Логін</value>
@@ -207,8 +249,14 @@
   <data name="OldPassword" xml:space="preserve">
     <value>Старий пароль</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>У порядку</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Оплата</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профіль</value>
@@ -231,6 +279,15 @@
   <data name="SaveSuccessTitle" xml:space="preserve">
     <value>Успіх</value>
   </data>
+  <data name="SearchOptions" xml:space="preserve">
+    <value>Пошукові налаштування</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Сортувати за</value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>Станція</value>
+  </data>
   <data name="StationAddedMsg" xml:space="preserve">
     <value>Станція успішно додана з таким ID:</value>
   </data>
@@ -239,6 +296,15 @@
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Станції</value>
+  </data>
+  <data name="Tariff" xml:space="preserve">
+    <value>Тариф</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>По</value>
+  </data>
+  <data name="TransactionDetailsTitle" xml:space="preserve">
+    <value>Деталі транзакції</value>
   </data>
   <data name="Transactions" xml:space="preserve">
     <value>Транзакції</value>

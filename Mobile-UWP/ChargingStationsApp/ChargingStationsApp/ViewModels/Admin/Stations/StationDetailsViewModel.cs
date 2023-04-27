@@ -2,9 +2,7 @@
 using ChargingStationsApp.Models;
 using ChargingStationsApp.Services.Interfaces;
 using ChargingStationsApp.ViewModels.Shared;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -44,7 +42,11 @@ namespace ChargingStationsApp.ViewModels.Admin.Stations
         public int StationId
         {
             get => stationId;
-            set => stationId = value;
+            set
+            {
+                stationId = value;
+                station.Id = value;
+            }
         }
 
         public string Name

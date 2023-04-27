@@ -21,7 +21,7 @@ namespace ChargingStationsApp.Services.Realizations
             }
         };
 
-        private static readonly List<Station> stations = new List<Station>
+        public static readonly List<Station> Stations = new List<Station>
         {
             new Station
             {
@@ -64,12 +64,12 @@ namespace ChargingStationsApp.Services.Realizations
 
         public async Task<Station> GetStationAsync(int id)
         {
-            return await Task.FromResult(stations.Find(sta => sta.Id == id));
+            return await Task.FromResult(Stations.Find(sta => sta.Id == id));
         }
 
         public async Task<ICollection<Station>> GetStationsAsync()
         {
-            return await Task.FromResult(stations);
+            return await Task.FromResult(Stations);
         }
 
         public async Task<bool> UpdateStationAsync(Station station)

@@ -7,6 +7,7 @@
        xmlns:services="clr-namespace:ChargingStationsApp.Services"
        xmlns:profile="clr-namespace:ChargingStationsApp.Views.Shared.Profile"
        xmlns:stations="clr-namespace:ChargingStationsApp.Views.Admin.Stations"
+       xmlns:transactions="clr-namespace:ChargingStationsApp.Views.Shared.Transactions"
        Title="Charging-Stations-Network"
        x:Class="ChargingStationsApp.AppShell">
 
@@ -78,7 +79,7 @@
                       IsVisible="{x:Static services:SessionInfo.IsAdmin}"/>
         <ShellContent Title="{l10n:Translate Transactions}"
                       Route="TransactionsPage"
-                      ContentTemplate="{DataTemplate shared:TransactionsPage}" />
+                      ContentTemplate="{DataTemplate transactions:TransactionsPage}" />
         <ShellContent Title="{l10n:Translate Admins}"
                       Route="AdminsPage"
                       ContentTemplate="{DataTemplate admins:AdminsPage}"

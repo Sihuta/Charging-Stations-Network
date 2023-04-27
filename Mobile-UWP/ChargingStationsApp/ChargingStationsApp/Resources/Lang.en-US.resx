@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddAdminTitle" xml:space="preserve">
+    <value>Adding admin</value>
+  </data>
   <data name="AddBtn" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -126,6 +129,15 @@
   <data name="Admins" xml:space="preserve">
     <value>Admins</value>
   </data>
+  <data name="ApplyBtn" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="CancelAll" xml:space="preserve">
+    <value>Cancel all</value>
+  </data>
   <data name="CancelBtn" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -134,6 +146,15 @@
   </data>
   <data name="ChangePasswordTitle" xml:space="preserve">
     <value>Changing password</value>
+  </data>
+  <data name="ChargedEnergy" xml:space="preserve">
+    <value>Charged energy</value>
+  </data>
+  <data name="ChargingEnd" xml:space="preserve">
+    <value>Charging end</value>
+  </data>
+  <data name="ChargingStart" xml:space="preserve">
+    <value>Charging start</value>
   </data>
   <data name="ConfirmBtn" xml:space="preserve">
     <value>Confirm</value>
@@ -153,11 +174,29 @@
   <data name="ConnectorTypePicker" xml:space="preserve">
     <value>Select a connector type...</value>
   </data>
+  <data name="Currency" xml:space="preserve">
+    <value>UAH</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="Energy" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="EnergyUnit" xml:space="preserve">
+    <value>kWh</value>
+  </data>
   <data name="FailMsg" xml:space="preserve">
     <value>Something went wrong. Try later.</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
   </data>
   <data name="InvalidInputFillMsg" xml:space="preserve">
     <value>Fill in all of the fields.</value>
@@ -176,6 +215,9 @@
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -207,8 +249,14 @@
   <data name="OldPassword" xml:space="preserve">
     <value>Old password</value>
   </data>
+  <data name="Order" xml:space="preserve">
+    <value>Order</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Pay</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
@@ -231,6 +279,15 @@
   <data name="SaveSuccessTitle" xml:space="preserve">
     <value>Success</value>
   </data>
+  <data name="SearchOptions" xml:space="preserve">
+    <value>Search options</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort by</value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>Station</value>
+  </data>
   <data name="StationAddedMsg" xml:space="preserve">
     <value>Station was successfully added with ID:</value>
   </data>
@@ -239,6 +296,15 @@
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Stations</value>
+  </data>
+  <data name="Tariff" xml:space="preserve">
+    <value>Tariff</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="TransactionDetailsTitle" xml:space="preserve">
+    <value>Transaction details</value>
   </data>
   <data name="Transactions" xml:space="preserve">
     <value>Transactions</value>
