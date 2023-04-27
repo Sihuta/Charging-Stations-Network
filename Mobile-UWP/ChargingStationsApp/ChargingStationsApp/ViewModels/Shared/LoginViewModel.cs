@@ -38,7 +38,8 @@ namespace ChargingStationsApp.ViewModels.Shared
         private bool ValidateLogin(object _)
         {
             return !string.IsNullOrWhiteSpace(email)
-                && !string.IsNullOrWhiteSpace(password);
+                && !string.IsNullOrWhiteSpace(password)
+                && email.IsValidEmailAddress();
         }
 
         private async void OnLoginClicked(object _)

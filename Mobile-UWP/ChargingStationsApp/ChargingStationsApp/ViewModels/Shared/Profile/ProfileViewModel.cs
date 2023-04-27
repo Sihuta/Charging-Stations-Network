@@ -92,7 +92,9 @@ namespace ChargingStationsApp.ViewModels.Shared.Profile
 
         private bool ValidateSave(object _)
         {
-            return !string.IsNullOrWhiteSpace(email);
+            return !string.IsNullOrWhiteSpace(email)
+                && email != SessionInfo.User.Email
+                && email.IsValidEmailAddress();
         }
 
         private async void OnSaveClicked(object _)
