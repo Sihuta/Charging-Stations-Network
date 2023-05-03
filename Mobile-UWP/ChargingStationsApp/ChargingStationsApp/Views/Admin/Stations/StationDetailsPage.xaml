@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:stations="clr-namespace:ChargingStationsApp.ViewModels.Admin.Stations"
+             x:DataType="stations:StationDetailsViewModel"
+             x:Class="ChargingStationsApp.Views.Admin.Stations.StationDetailsPage"
+             Title="{l10n:Translate StationDetailsTitle}"
+             >
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Name}"/>
+                <Entry Text="{Binding Name}" WidthRequest="250" Margin="0,5,0,0"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Latitude}"/>
+                <Entry Text="{Binding Latitude}" Keyboard="Numeric" WidthRequest="250" Margin="0,5,0,0"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Longtitude}"/>
+                <Entry Text="{Binding Longtitude}" WidthRequest="250" Margin="0,5,0,0"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate ConnectorType}"/>
+                <Picker SelectedItem="{Binding ConnectorType, Mode=TwoWay}"
+                        ItemsSource="{Binding ConnectorTypes, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding Name}"
+                        WidthRequest="250"
+                        Margin="0,5,0,0"
+                        SelectedIndex="0"
+                        />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="20" Margin="0, 20">
+                <Button Text="{l10n:Translate CancelBtn}" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="{l10n:Translate SaveBtn}" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

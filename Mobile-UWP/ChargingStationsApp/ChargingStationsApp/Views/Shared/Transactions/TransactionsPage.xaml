@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:models="clr-namespace:ChargingStationsApp.Models"
+             xmlns:transactions="clr-namespace:ChargingStationsApp.ViewModels.Shared.Transactions"
+             x:DataType="transactions:TransactionsViewModel"
+             x:Class="ChargingStationsApp.Views.Shared.Transactions.TransactionsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{l10n:Translate SearchOptions}" Command="{Binding OpenSearchOptionsCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView x:DataType="transactions:TransactionsViewModel"
+                 Command="{Binding LoadTransactionsCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                 >
+        <CollectionView x:Name="ItemsListView"
+                        ItemsSource="{Binding Transactions}"
+                        SelectionMode="None"
+                        >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="models:Transaction" Orientation="Horizontal">
+                        <Frame Padding="10" BorderColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand">
+                            <StackLayout>
+                                <Label LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"
+                                       >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ChargedEnergy, StringFormat='{0:F2}'}" />
+                                            <Span Text=" " />
+                                            <Span Text="{l10n:Translate EnergyUnit}" />
+                                            <Span Text=" => " />
+                                            <Span Text="{Binding Pay, StringFormat='{0:F2}'}" />
+                                            <Span Text=" " />
+                                            <Span Text="{l10n:Translate Currency}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="14"
+                                       FontAttributes="None"
+                                       >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Session.Station.Name}" />
+                                            <Span Text=" (" />
+                                            <Span Text="{Binding Session.Station.Latitude}" />
+                                            <Span Text=", " />
+                                            <Span Text="{Binding Session.Station.Longitude}" />
+                                            <Span Text=")" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="12"
+                                       FontAttributes="None"
+                                       >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding StartDateTime, StringFormat='{0:dd.MM.yy HH:mm}'}" />
+                                            <Span Text=" - " />
+                                            <Span Text="{Binding EndDateTime, StringFormat='{0:dd.MM.yy HH:mm}'}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type transactions:TransactionsViewModel}}, Path=TransactionTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:transactions="clr-namespace:ChargingStationsApp.ViewModels.Shared.Transactions"
+             x:DataType="transactions:TransactionDetailsViewModel"
+             x:Class="ChargingStationsApp.Views.Shared.Transactions.TransactionDetailsPage"
+             Title="{l10n:Translate TransactionDetailsTitle}">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" Padding="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate ChargedEnergy}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding ChargedEnergy, StringFormat='{0:F2}'}" />
+                                <Span Text=" "/>
+                                <Span Text="{l10n:Translate EnergyUnit}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Tariff}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Tariff.Name}"/>
+                                <Span Text=" - "/>
+                                <Span Text="{Binding Tariff.Price, StringFormat='{0:F2}'}" />
+                                <Span Text=" "/>
+                                <Span Text="{l10n:Translate Currency}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Pay}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Pay, StringFormat='{0:F2}'}" />
+                                <Span Text=" "/>
+                                <Span Text="{l10n:Translate Currency}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Station}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Session.Station.Name}" />
+                                <Span Text=", "/>
+                                <Span Text="{Binding Session.Station.ConnectorType.Name}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Location}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="("/>
+                                <Span Text="{Binding Session.Station.Latitude}"/>
+                                <Span Text=", "/>
+                                <Span Text="{Binding Session.Station.Longitude}"/>
+                                <Span Text=")"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate ChargingStart}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label Text="{Binding StartDateTime, StringFormat='{0:dd.MM.yy HH:mm}'}"
+                           LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           />
+                </Frame>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate ChargingEnd}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label Text="{Binding EndDateTime, StringFormat='{0:dd.MM.yy HH:mm}'}"
+                           LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           />
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

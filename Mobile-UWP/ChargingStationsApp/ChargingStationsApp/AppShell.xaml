@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+       xmlns:shared="clr-namespace:ChargingStationsApp.Views.Shared"
+       xmlns:admins="clr-namespace:ChargingStationsApp.Views.Admin.Admins"
+       xmlns:services="clr-namespace:ChargingStationsApp.Services"
+       xmlns:profile="clr-namespace:ChargingStationsApp.Views.Shared.Profile"
+       xmlns:stations="clr-namespace:ChargingStationsApp.Views.Admin.Stations"
+       xmlns:transactions="clr-namespace:ChargingStationsApp.Views.Shared.Transactions"
+       Title="Charging-Stations-Network"
+       x:Class="ChargingStationsApp.AppShell">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="White" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="{l10n:Translate Profile}"
+                      Route="ProfilePage"
+                      ContentTemplate="{DataTemplate profile:ProfilePage}" />
+        <ShellContent Title="{l10n:Translate Stations}"
+                      Route="StationsPage"
+                      ContentTemplate="{DataTemplate stations:StationsPage}"
+                      IsVisible="{x:Static services:SessionInfo.IsAdmin}"/>
+        <ShellContent Title="{l10n:Translate Transactions}"
+                      Route="TransactionsPage"
+                      ContentTemplate="{DataTemplate transactions:TransactionsPage}" />
+        <ShellContent Title="{l10n:Translate Admins}"
+                      Route="AdminsPage"
+                      ContentTemplate="{DataTemplate admins:AdminsPage}"
+                      IsVisible="{x:Static  services:SessionInfo.IsAdmin}"/>
+    </TabBar>
+</Shell>

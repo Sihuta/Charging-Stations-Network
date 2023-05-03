@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:transactions="clr-namespace:ChargingStationsApp.ViewModels.Shared.Transactions"
+             x:DataType="transactions:SearchOptionsViewModel"
+             x:Class="ChargingStationsApp.Views.Shared.Transactions.SearchOptionsPage"
+             Title="{l10n:Translate SearchOptions}">
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="15">
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate SortBy}"/>
+                <Picker SelectedItem="{Binding SortBy, Mode=TwoWay}"
+                        ItemsSource="{Binding SortOptions, Mode=TwoWay}" 
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedIndex="{Binding SortByInd}"
+                        WidthRequest="295"
+                        Margin="0,5,0,0"
+                        />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate Order}"/>
+                <Picker SelectedItem="{Binding SortOrder, Mode=TwoWay}"
+                        ItemsSource="{Binding SortOrderOptions, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding Value}"
+                        SelectedIndex="{Binding SortOrderInd}"
+                        WidthRequest="295"
+                        Margin="0,5,0,0"
+                        />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate From}"/>
+                <DatePicker x:Name="fromDatePicker"
+                            DateSelected="OnDateFromSelected"
+                            Format="d"
+                            HorizontalOptions="EndAndExpand"
+                            />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate To}"/>
+                <DatePicker x:Name="toDatePicker"
+                            MinimumDate="{Binding Source={x:Reference fromDatePicker}, Path=Date}"
+                            DateSelected="OnDateToSelected"
+                            Format="d"
+                            HorizontalOptions="EndAndExpand"
+                            />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="20" Margin="0, 20">
+                <Button Text="{l10n:Translate CancelAll}" Command="{Binding CancelAllCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="{l10n:Translate ApplyBtn}" Command="{Binding ApplyCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

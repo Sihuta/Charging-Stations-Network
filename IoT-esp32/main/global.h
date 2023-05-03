@@ -10,6 +10,7 @@
 
 #define BACKEND_URL_MAX_LENGTH 50
 #define STATION_ID_MAX_LENGTH 4
+#define ENERGY_MAX_LENGTH 5
 
 #define STRING_EMPTY ""
 
