@@ -40,6 +40,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
         public Command OpenSearchOptionsCommand { get; }
         public Command<Transaction> TransactionTapped { get; }
 
+        public bool ListIsEmpty { get => !Transactions.Any(); }
+
         public Transaction SelectedTransaction
         {
             get => selectedTransaction;
@@ -81,7 +83,7 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
             if (searchOptions.Apply)
             {
                 var transactions = await transactionService
-                    .GetTransactionsAsync(searchOptions.DateFrom, searchOptions.DateTo);
+                    .GetTransactionsByStationAsync(searchOptions.StationName, searchOptions.DateFrom, searchOptions.DateTo);
 
                 switch (searchOptions.SortBy)
                 {
@@ -100,7 +102,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
                 }
             }
 
-            return await transactionService.GetTransactionsAsync();
+            return await transactionService
+                .GetTransactionsByStationAsync(searchOptions.StationName);
         }
 
         private async Task OnOpenSearchOptionsAsync()

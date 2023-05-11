@@ -8,6 +8,14 @@
              Title="{l10n:Translate SearchOptions}">
     <ContentPage.Content>
         <StackLayout Spacing="5" Padding="15">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate StationName}"/>
+                <Entry Text="{Binding StationName}"
+                       HorizontalTextAlignment="Start"
+                       WidthRequest="295"
+                       Margin="0,5,0,0"
+                       />
+            </StackLayout>
             
             <StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate SortBy}"/>
@@ -19,6 +27,7 @@
                         Margin="0,5,0,0"
                         />
             </StackLayout>
+            
             <StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate Order}"/>
                 <Picker SelectedItem="{Binding SortOrder, Mode=TwoWay}"
@@ -38,6 +47,7 @@
                             HorizontalOptions="EndAndExpand"
                             />
             </StackLayout>
+            
             <StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate To}"/>
                 <DatePicker x:Name="toDatePicker"

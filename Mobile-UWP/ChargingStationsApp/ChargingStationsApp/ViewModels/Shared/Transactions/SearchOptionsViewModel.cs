@@ -21,6 +21,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
         private DateTime dateFrom;
         private DateTime dateTo;
 
+        private string stationName;
+
         private readonly SearchOptions searchOptions;
         private readonly ITransactionService transactionService;
 
@@ -86,6 +88,12 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
             set => SetProperty(ref dateTo, value);
         }
 
+        public string StationName
+        {
+            get => stationName;
+            set => SetProperty(ref stationName, value);
+        }
+
         public async Task OnAppearing()
         {
             await LoadDateConstraints();
@@ -107,6 +115,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
 
             searchOptions.DateFrom = DateFrom;
             searchOptions.DateTo = DateTo;
+
+            searchOptions.StationName = StationName;
             searchOptions.Apply = true;
 
             await Shell.Current.GoToAsync("..");
@@ -150,6 +160,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
 
                 DateFrom = searchOptions.DateFrom;
                 DateTo = searchOptions.DateTo;
+
+                StationName = searchOptions.StationName;
             }
         }
 

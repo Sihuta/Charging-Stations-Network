@@ -186,6 +186,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmptyListMsg" xml:space="preserve">
+    <value>The list is empty.</value>
+  </data>
   <data name="Energy" xml:space="preserve">
     <value>Energy</value>
   </data>
@@ -293,6 +296,9 @@
   </data>
   <data name="StationDetailsTitle" xml:space="preserve">
     <value>Station details</value>
+  </data>
+  <data name="StationName" xml:space="preserve">
+    <value>Station name</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Stations</value>

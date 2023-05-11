@@ -1,4 +1,5 @@
-﻿using ChargingStationsApp.Models;
+﻿using ChargingStationsApp.Extensions;
+using ChargingStationsApp.Models;
 using ChargingStationsApp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,27 @@ namespace ChargingStationsApp.Services.Realizations
         public async Task<ICollection<Transaction>> GetTransactionsAsync(DateTime dateFrom, DateTime dateTo)
         {
             var transactions = await GetTransactionsAsync();
+            return transactions
+                .Where(tr => tr.StartDateTime.Date >= dateFrom && tr.EndDateTime.Date <= dateTo)
+                .ToList();
+        }
+
+        public async Task<ICollection<Transaction>> GetTransactionsByStationAsync(string stationName)
+        {
+            var transactions = await GetTransactionsAsync();
+            if (stationName is null)
+            {
+                return transactions;
+            }
+
+            return transactions
+                .Where(tr => tr.Session.Station.Name.ContainsIgnoreCase(stationName))
+                .ToList();
+        }
+
+        public async Task<ICollection<Transaction>> GetTransactionsByStationAsync(string stationName, DateTime dateFrom, DateTime dateTo)
+        {
+            var transactions = await GetTransactionsByStationAsync(stationName);
             return transactions
                 .Where(tr => tr.StartDateTime.Date >= dateFrom && tr.EndDateTime.Date <= dateTo)
                 .ToList();

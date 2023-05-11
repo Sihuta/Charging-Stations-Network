@@ -5,7 +5,8 @@
              xmlns:models="clr-namespace:ChargingStationsApp.Models"
              xmlns:transactions="clr-namespace:ChargingStationsApp.ViewModels.Shared.Transactions"
              x:DataType="transactions:TransactionsViewModel"
-             x:Class="ChargingStationsApp.Views.Shared.Transactions.TransactionsPage">
+             x:Class="ChargingStationsApp.Views.Shared.Transactions.TransactionsPage"
+             >
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{l10n:Translate SearchOptions}" Command="{Binding OpenSearchOptionsCommand}" />
     </ContentPage.ToolbarItems>
