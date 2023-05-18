@@ -1,4 +1,5 @@
-﻿using ChargingStationsApp.Models;
+﻿using ChargingStationsApp.Enums;
+using ChargingStationsApp.Models;
 using ChargingStationsApp.Services.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,12 +13,12 @@ namespace ChargingStationsApp.Services.Realizations
             new ConnectorType
             {
                 Name = "Connector Type 1",
-                MaxPower = 10
+                MaxPower = 7
             },
             new ConnectorType
             {
                 Name = "Connector Type 2",
-                MaxPower = 20
+                MaxPower = 21
             }
         };
 
@@ -27,24 +28,26 @@ namespace ChargingStationsApp.Services.Realizations
             {
                 Id = 1,
                 Name = "Station 1",
-                Latitude = -34.397,
-                Longitude = 150.644,
+                Latitude = 50.0156448,
+                Longitude = 36.2270381,
                 ServerUrl = "serverUrl",
                 WifiSsid = "wifiSsid",
                 WifiPwd = "wifiPwd",
-                ConnectorType = connectorTypes[0]
+                ConnectorType = connectorTypes[0],
+                State = StationState.Ready
             },
-            new Station
-            {
-                Id = 2,
-                Name = "Station 2",
-                Latitude = -34.397,
-                Longitude = 150.644,
-                ServerUrl = "serverUrl",
-                WifiSsid = "wifiSsid",
-                WifiPwd = "wifiPwd",
-                ConnectorType = connectorTypes[1]
-            }
+            //new Station
+            //{
+            //    Id = 2,
+            //    Name = "Station 2",
+            //    Latitude = 50.0140603,
+            //    Longitude = 36.2274672,
+            //    ServerUrl = "serverUrl",
+            //    WifiSsid = "wifiSsid",
+            //    WifiPwd = "wifiPwd",
+            //    ConnectorType = connectorTypes[1],
+            //    State = StationState.Error
+            //}
         };
 
         public async Task<int> CreateStationAsync(Station station)

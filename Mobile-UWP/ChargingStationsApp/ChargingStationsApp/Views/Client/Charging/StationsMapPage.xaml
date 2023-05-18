@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:models="clr-namespace:ChargingStationsApp.Models"
+             xmlns:charging="clr-namespace:ChargingStationsApp.ViewModels.Client.Charging"
+             x:DataType="charging:StationsMapViewModel"
+             x:Class="ChargingStationsApp.Views.Client.Charging.StationsMapPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <maps:Map x:Name="map"
+                      ItemsSource="{Binding Stations}"
+                      HasScrollEnabled="True"
+                      HasZoomEnabled="True"
+                      IsShowingUser="True"
+                      MapType="Street"
+                      >
+                <maps:Map.ItemTemplate>
+                    <DataTemplate x:DataType="models:MappedStation">
+                        <maps:Pin Position="{Binding Position}"
+                                  Address="{Binding ConnectorType.Name}"
+                                  Label="{Binding Name}"
+                                  Clicked="Pin_Clicked"
+                                  />
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </maps:Map>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

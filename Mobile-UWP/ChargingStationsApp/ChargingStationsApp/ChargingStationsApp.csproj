@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />  
+    <PackageReference Include="Xamarin.Forms.Maps" Version="5.0.0.2578" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +16,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Lang.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Client\Charging\StationsMapPage.xaml.cs">
+      <DependentUpon>StationsMapPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -36,6 +40,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Admin\Stations\StationsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Client\Charging\StartChargingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Client\Charging\StationsMapPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Shared\Profile\ChangePasswordPage.xaml">

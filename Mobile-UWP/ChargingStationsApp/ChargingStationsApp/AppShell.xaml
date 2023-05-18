@@ -2,7 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
-       xmlns:shared="clr-namespace:ChargingStationsApp.Views.Shared"
+       xmlns:charging="clr-namespace:ChargingStationsApp.Views.Client.Charging"
        xmlns:admins="clr-namespace:ChargingStationsApp.Views.Admin.Admins"
        xmlns:services="clr-namespace:ChargingStationsApp.Services"
        xmlns:profile="clr-namespace:ChargingStationsApp.Views.Shared.Profile"
@@ -77,6 +77,10 @@
                       Route="StationsPage"
                       ContentTemplate="{DataTemplate stations:StationsPage}"
                       IsVisible="{x:Static services:SessionInfo.IsAdmin}"/>
+        <ShellContent Title="{l10n:Translate Charging}"
+                      Route="ChargingPage"
+                      ContentTemplate="{DataTemplate charging:StationsMapPage}"
+                      IsVisible="{x:Static  services:SessionInfo.IsClient}"/>
         <ShellContent Title="{l10n:Translate Transactions}"
                       Route="TransactionsPage"
                       ContentTemplate="{DataTemplate transactions:TransactionsPage}" />

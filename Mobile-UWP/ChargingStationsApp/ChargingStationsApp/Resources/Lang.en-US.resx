@@ -150,11 +150,17 @@
   <data name="ChargedEnergy" xml:space="preserve">
     <value>Charged energy</value>
   </data>
+  <data name="Charging" xml:space="preserve">
+    <value>Charging</value>
+  </data>
   <data name="ChargingEnd" xml:space="preserve">
     <value>Charging end</value>
   </data>
   <data name="ChargingStart" xml:space="preserve">
     <value>Charging start</value>
+  </data>
+  <data name="ChargingState" xml:space="preserve">
+    <value>Charging</value>
   </data>
   <data name="ConfirmBtn" xml:space="preserve">
     <value>Confirm</value>
@@ -167,6 +173,12 @@
   </data>
   <data name="ConfirmRemoveTitle" xml:space="preserve">
     <value>Confirm the removal</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="ConnectionFailMsg" xml:space="preserve">
+    <value>Your vehicle isn't connected to the charging station. Plug it in and try again.</value>
   </data>
   <data name="ConnectorType" xml:space="preserve">
     <value>Connector type</value>
@@ -195,8 +207,14 @@
   <data name="EnergyUnit" xml:space="preserve">
     <value>kWh</value>
   </data>
+  <data name="ErrorState" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="FailMsg" xml:space="preserve">
     <value>Something went wrong. Try later.</value>
+  </data>
+  <data name="FailTitle" xml:space="preserve">
+    <value>Fail</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
@@ -240,6 +258,9 @@
   <data name="Longtitude" xml:space="preserve">
     <value>Longtitude</value>
   </data>
+  <data name="MaxPower" xml:space="preserve">
+    <value>Maximum power</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -261,8 +282,14 @@
   <data name="Pay" xml:space="preserve">
     <value>Pay</value>
   </data>
+  <data name="PowerUnit" xml:space="preserve">
+    <value>kW</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
+  </data>
+  <data name="ReadyState" xml:space="preserve">
+    <value>Ready</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
@@ -287,6 +314,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort by</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
   </data>
   <data name="Station" xml:space="preserve">
     <value>Station</value>

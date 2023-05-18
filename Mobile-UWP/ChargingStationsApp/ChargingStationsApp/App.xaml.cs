@@ -15,6 +15,7 @@ namespace ChargingStationsApp
             DependencyService.Register<UserService>();
             DependencyService.Register<StationService>();
             DependencyService.Register<TransactionService>();
+            DependencyService.Register<ChargingService>();
 
             MainPage = new LoginPage();
         }

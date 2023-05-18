@@ -1,4 +1,6 @@
-﻿namespace ChargingStationsApp.Models
+﻿using ChargingStationsApp.Enums;
+
+namespace ChargingStationsApp.Models
 {
     class Station
     {
@@ -10,5 +12,6 @@
         public string WifiSsid { get; set; }
         public string WifiPwd { get; set; }
         public ConnectorType ConnectorType { get; set; }
+        public StationState State { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace ChargingStationsApp.Services.Realizations
                 Id = 1,
                 Email = "user@example.com",
                 Password = "password",
-                Role = "admin"
+                Role = "client"
             },
             new User
             {

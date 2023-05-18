@@ -150,11 +150,17 @@
   <data name="ChargedEnergy" xml:space="preserve">
     <value>Заряджена енергія</value>
   </data>
+  <data name="Charging" xml:space="preserve">
+    <value>Зарядка</value>
+  </data>
   <data name="ChargingEnd" xml:space="preserve">
     <value>Кінець зарядки</value>
   </data>
   <data name="ChargingStart" xml:space="preserve">
     <value>Початок зарядки</value>
+  </data>
+  <data name="ChargingState" xml:space="preserve">
+    <value>Заряджає</value>
   </data>
   <data name="ConfirmBtn" xml:space="preserve">
     <value>Підтвердити</value>
@@ -167,6 +173,12 @@
   </data>
   <data name="ConfirmRemoveTitle" xml:space="preserve">
     <value>Підтвердіть видалення</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Підключитись</value>
+  </data>
+  <data name="ConnectionFailMsg" xml:space="preserve">
+    <value>Ваш автомобіль не підключено до зарядної станції. Зробіть це та спробуйте ще раз.</value>
   </data>
   <data name="ConnectorType" xml:space="preserve">
     <value>Тип роз'єму</value>
@@ -195,8 +207,14 @@
   <data name="EnergyUnit" xml:space="preserve">
     <value>кВт-год</value>
   </data>
+  <data name="ErrorState" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
   <data name="FailMsg" xml:space="preserve">
     <value>Щось пішло не так, спробуйте пізніше.</value>
+  </data>
+  <data name="FailTitle" xml:space="preserve">
+    <value>Невдача</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>З</value>
@@ -240,6 +258,9 @@
   <data name="Longtitude" xml:space="preserve">
     <value>Довгота</value>
   </data>
+  <data name="MaxPower" xml:space="preserve">
+    <value>Максимальна потужність</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Назва</value>
   </data>
@@ -261,8 +282,14 @@
   <data name="Pay" xml:space="preserve">
     <value>Оплата</value>
   </data>
+  <data name="PowerUnit" xml:space="preserve">
+    <value>кВт</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Профіль</value>
+  </data>
+  <data name="ReadyState" xml:space="preserve">
+    <value>Готова</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Роль</value>
@@ -287,6 +314,9 @@
   </data>
   <data name="SortBy" xml:space="preserve">
     <value>Сортувати за</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Статус</value>
   </data>
   <data name="Station" xml:space="preserve">
     <value>Станція</value>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -47,7 +48,9 @@ namespace ChargingStationsApp.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 global::Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental");
-                Xamarin.Forms.Forms.Init(e);
+
+                var assembliesToInclude = new[] { typeof(Xamarin.Forms.Maps.UWP.MapRenderer).GetTypeInfo().Assembly };
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

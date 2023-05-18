@@ -20,7 +20,7 @@ namespace ChargingStationsApp.UWP
         public MainPage()
         {
             this.InitializeComponent();
-
+            Xamarin.FormsMaps.Init("02bMGt1gHm22UGMAzIdQ~eHsQBI-vHIZVh8aXe67w9w~AgJxg2-QEuUZCyb0Sc4Eroc3bdZP9HPrfiaYKgImAb_3311GdHkkWiVczPdCGVaZ");
             LoadApplication(new ChargingStationsApp.App());
         }
     }
