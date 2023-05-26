@@ -1,6 +1,7 @@
 ﻿using ChargingStationsApp.Localization;
 using ChargingStationsApp.Services.Realizations;
-using ChargingStationsApp.Views.Shared;
+using ChargingStationsApp.Views.Client.Charging;
+using ChargingStationsApp.Views.Shared.Auth;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -29,8 +30,8 @@ namespace ChargingStationsApp
             DependencyService.Register<TransactionService>();
             DependencyService.Register<IotChargingService>();
 
-            MainPage = new LoginPage();
             HttpClient = CreateHttpClient();
+            MainPage = new StationsMapPage();
         }
 
         public static HttpContent GetHttpContent(object obj)

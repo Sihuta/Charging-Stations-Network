@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:ChargingStationsApp.ViewModels.Shared"
+             xmlns:viewmodels="clr-namespace:ChargingStationsApp.ViewModels.Shared.Auth"
              x:DataType="viewmodels:LoginViewModel"
-             x:Class="ChargingStationsApp.Views.Shared.LoginPage"
+             x:Class="ChargingStationsApp.Views.Shared.Auth.LoginPage"
              xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
              Title="Charging-Stations-Network">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical"
                      HorizontalOptions="Center"
-                     VerticalOptions="Center">
+                     VerticalOptions="Center"
+                     Spacing="10">
             <Entry Text="{Binding Email}"
                    Placeholder="{l10n:Translate Email}"
                    Keyboard="Email"
@@ -24,9 +25,18 @@
                    IsPassword="True"
                    HorizontalTextAlignment="Start"
                            />
-            <Button HorizontalOptions="Center"
-                    Text="{l10n:Translate LoginBtn}"
-                    Command="{Binding LoginCommand}"/>
+            <StackLayout Orientation="Horizontal"
+                         Spacing="20"
+                         >
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="{l10n:Translate RegisterBtn}"
+                        Command="{Binding RegisterCommand}"
+                        />
+                <Button HorizontalOptions="EndAndExpand"
+                        Text="{l10n:Translate LoginBtn}"
+                        Command="{Binding LoginCommand}"
+                        />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

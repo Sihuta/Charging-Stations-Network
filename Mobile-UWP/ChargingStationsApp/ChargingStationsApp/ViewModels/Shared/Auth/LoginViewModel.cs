@@ -1,9 +1,10 @@
 ﻿using ChargingStationsApp.Extensions;
 using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
+using ChargingStationsApp.Views.Shared.Auth;
 using Xamarin.Forms;
 
-namespace ChargingStationsApp.ViewModels.Shared
+namespace ChargingStationsApp.ViewModels.Shared.Auth
 {
     internal class LoginViewModel : BaseViewModel
     {
@@ -16,11 +17,13 @@ namespace ChargingStationsApp.ViewModels.Shared
         {
             userService = DependencyService.Get<IUserService>();
 
+            RegisterCommand = new Command(OnRegisterClicked);
             LoginCommand = new Command(OnLoginClicked, ValidateLogin);
             PropertyChanged +=
                 (_, __) => LoginCommand.ChangeCanExecute();
         }
 
+        public Command RegisterCommand { get; }
         public Command LoginCommand { get; }
 
         public string Email
@@ -40,6 +43,11 @@ namespace ChargingStationsApp.ViewModels.Shared
             return !string.IsNullOrWhiteSpace(email)
                 && !string.IsNullOrWhiteSpace(password)
                 && email.IsValidEmailAddress();
+        }
+
+        private void OnRegisterClicked(object _)
+        {
+            Application.Current.MainPage = new RegisterPage();
         }
 
         private async void OnLoginClicked(object _)

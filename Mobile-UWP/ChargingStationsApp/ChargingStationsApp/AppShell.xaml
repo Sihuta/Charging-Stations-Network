@@ -70,15 +70,12 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="{l10n:Translate Profile}"
-                      Route="ProfilePage"
-                      ContentTemplate="{DataTemplate profile:ProfilePage}" />
         <ShellContent Title="{l10n:Translate Stations}"
                       Route="StationsPage"
                       ContentTemplate="{DataTemplate stations:StationsPage}"
                       IsVisible="{x:Static services:SessionInfo.IsAdmin}"/>
         <ShellContent Title="{l10n:Translate Charging}"
-                      Route="ChargingPage"
+                      Route="StationsMapPage"
                       ContentTemplate="{DataTemplate charging:StationsMapPage}"
                       IsVisible="{x:Static  services:SessionInfo.IsClient}"/>
         <ShellContent Title="{l10n:Translate Transactions}"
@@ -88,5 +85,8 @@
                       Route="AdminsPage"
                       ContentTemplate="{DataTemplate admins:AdminsPage}"
                       IsVisible="{x:Static  services:SessionInfo.IsAdmin}"/>
+        <ShellContent Title="{l10n:Translate Profile}"
+                      Route="ProfilePage"
+                      ContentTemplate="{DataTemplate profile:ProfilePage}" />
     </TabBar>
 </Shell>

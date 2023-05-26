@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:auth="clr-namespace:ChargingStationsApp.ViewModels.Shared.Auth"
+             x:DataType="auth:RegisterViewModel"
+             x:Class="ChargingStationsApp.Views.Shared.Auth.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="10">
+            <Entry Text="{Binding Email}"
+                   Placeholder="{l10n:Translate Email}"
+                   Keyboard="Email"
+                   HorizontalOptions="Center" 
+                   WidthRequest="250"
+                   HorizontalTextAlignment="Start"
+                   />
+            <Entry Text="{Binding Password}"
+                   Placeholder="{l10n:Translate Password}"
+                   HorizontalOptions="Center" 
+                   WidthRequest="250"
+                   IsPassword="True"
+                   HorizontalTextAlignment="Start"
+                   />
+            <Entry Text="{Binding ConfirmPassword}"
+                   Placeholder="{l10n:Translate ConfirmPassword}"
+                   HorizontalOptions="Center" 
+                   WidthRequest="250"
+                   IsPassword="True"
+                   HorizontalTextAlignment="Start"
+                   />
+            <StackLayout Orientation="Horizontal"
+                         Spacing="20"
+                         >
+                <Button HorizontalOptions="StartAndExpand"
+                        Text="{l10n:Translate LoginBtn}"
+                        Command="{Binding LoginCommand}"
+                        />
+                <Button HorizontalOptions="EndAndExpand"
+                        Text="{l10n:Translate RegisterBtn}"
+                        Command="{Binding RegisterCommand}"
+                        />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

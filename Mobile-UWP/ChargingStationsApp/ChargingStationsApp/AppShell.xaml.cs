@@ -2,6 +2,7 @@
 using ChargingStationsApp.Views.Admin.Stations;
 using ChargingStationsApp.Views.Client.Charging;
 using ChargingStationsApp.Views.Shared;
+using ChargingStationsApp.Views.Shared.Auth;
 using ChargingStationsApp.Views.Shared.Profile;
 using ChargingStationsApp.Views.Shared.Transactions;
 using System;
@@ -16,6 +17,8 @@ namespace ChargingStationsApp
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+
             Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
             Routing.RegisterRoute(nameof(TransactionDetailsPage), typeof(TransactionDetailsPage));
             Routing.RegisterRoute(nameof(SearchOptionsPage), typeof(SearchOptionsPage));

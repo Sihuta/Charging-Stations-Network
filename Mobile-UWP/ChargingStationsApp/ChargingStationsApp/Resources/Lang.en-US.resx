@@ -171,6 +171,9 @@
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirm new password</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Comfirm password</value>
+  </data>
   <data name="ConfirmRemoveMsg" xml:space="preserve">
     <value>Are you sure you want to remove it?</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
+  </data>
+  <data name="GuestConnectionMsg" xml:space="preserve">
+    <value>To use the charging service, you must first log in.</value>
+  </data>
+  <data name="GuestConnectionTitle" xml:space="preserve">
+    <value>Connection prompt</value>
   </data>
   <data name="HourUnit" xml:space="preserve">
     <value>h</value>
@@ -302,6 +311,9 @@
   </data>
   <data name="ReadyState" xml:space="preserve">
     <value>Ready</value>
+  </data>
+  <data name="RegisterBtn" xml:space="preserve">
+    <value>Register</value>
   </data>
   <data name="RequestedEnergy" xml:space="preserve">
     <value>Requested energy</value>

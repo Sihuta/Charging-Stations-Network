@@ -1,8 +1,8 @@
-﻿using ChargingStationsApp.ViewModels.Shared;
+﻿using ChargingStationsApp.ViewModels.Shared.Auth;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace ChargingStationsApp.Views.Shared
+namespace ChargingStationsApp.Views.Shared.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -10,7 +10,7 @@ namespace ChargingStationsApp.Views.Shared
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            BindingContext = new LoginViewModel();
         }
     }
 }

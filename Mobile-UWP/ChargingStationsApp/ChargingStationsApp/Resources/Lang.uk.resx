@@ -171,6 +171,9 @@
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Повторити новий пароль</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Пароль для підтвердження</value>
+  </data>
   <data name="ConfirmRemoveMsg" xml:space="preserve">
     <value>Ви впевнені, що хочете це видалити?</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="From" xml:space="preserve">
     <value>З</value>
+  </data>
+  <data name="GuestConnectionMsg" xml:space="preserve">
+    <value>Щоб скористатися послугою підзарядки, ви повинні спочатку увійти в систему.</value>
+  </data>
+  <data name="GuestConnectionTitle" xml:space="preserve">
+    <value>Спроба підключення</value>
   </data>
   <data name="HourUnit" xml:space="preserve">
     <value>год</value>
@@ -302,6 +311,9 @@
   </data>
   <data name="ReadyState" xml:space="preserve">
     <value>Готова</value>
+  </data>
+  <data name="RegisterBtn" xml:space="preserve">
+    <value>Зареєструватись</value>
   </data>
   <data name="RequestedEnergy" xml:space="preserve">
     <value>Задана кількість енергії</value>

@@ -27,6 +27,8 @@ namespace ChargingStationsApp.Services.Realizations
 
         public string AdminRole => "admin";
 
+        public string ClientRole => "client";
+
         public async Task<bool> CreateUserAsync(User user)
         {
             return await Task.FromResult(true);
@@ -48,6 +50,11 @@ namespace ChargingStationsApp.Services.Realizations
         }
 
         public async Task<User> LoginAsync(string email, string password)
+        {
+            return await Task.FromResult(users[0]);
+        }
+
+        public async Task<User> RegisterAsync(string email, string password)
         {
             return await Task.FromResult(users[0]);
         }

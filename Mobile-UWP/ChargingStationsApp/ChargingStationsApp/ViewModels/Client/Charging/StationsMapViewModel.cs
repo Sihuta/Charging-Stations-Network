@@ -1,9 +1,11 @@
 ﻿using ChargingStationsApp.Extensions;
 using ChargingStationsApp.Localization;
 using ChargingStationsApp.Models;
+using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
 using ChargingStationsApp.ViewModels.Shared;
 using ChargingStationsApp.Views.Client.Charging;
+using ChargingStationsApp.Views.Shared.Auth;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,10 +26,15 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
             Pins = new ObservableCollection<Pin>();
             Stations = new ObservableCollection<Station>();
+
+            LoginCommand = new Command(OnLoginClicked);
         }
 
         public ObservableCollection<Pin> Pins { get; }
         public ObservableCollection<Station> Stations { get; }
+
+        public Command LoginCommand { get; }
+
 
         public async Task OnAppearingAsync()
         {
@@ -50,11 +57,18 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
                 sta.Latitude == pin.Position.Latitude &&
                 sta.Longitude == pin.Position.Longitude);
 
-            if (await DisplayStationDetailsForConnection(station) &&
-                await TryToConnectAsync(station))
+            if (await DisplayStationDetailsForConnection(station))
             {
-                await Shell.Current.GoToAsync(
-                    $"{nameof(StartChargingPage)}?{nameof(StartChargingViewModel.StationId)}={station.Id}");
+                if (SessionInfo.IsGuest)
+                {
+                    await Application.Current.MainPage.DisplayLocalizedAlert(
+                        "GuestConnectionTitle", "GuestConnectionMsg");
+                }
+                else if (await TryToConnectAsync(station))
+                {
+                    await Shell.Current.GoToAsync(
+                        $"{nameof(StartChargingPage)}?{nameof(StartChargingViewModel.StationId)}={station.Id}");
+                }
             }
         }
 
@@ -94,6 +108,11 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
             return await Application.Current.MainPage
                 .DisplayAlert(title, msg, yesBtn, noBtn);
+        }
+
+        private void OnLoginClicked(object _)
+        {
+            Application.Current.MainPage = new LoginPage();
         }
     }
 }
