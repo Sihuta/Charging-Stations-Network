@@ -10,7 +10,7 @@
 #include "https_client.h"
 
 #include "esp_timer.h"
-#define TIMER_INTERVAL_US 1000000 // 1 second in microseconds
+#define TIMER_INTERVAL_US 3000000 // 3 seconds in microseconds
 
 #define LOGIN_URI "/login/"
 #define BACKEND_URL_URI "/backend_url/"

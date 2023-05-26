@@ -30,7 +30,7 @@ namespace ChargingStationsApp.Services.Realizations
                 Name = "Station 1",
                 Latitude = 50.0156448,
                 Longitude = 36.2270381,
-                ServerUrl = "serverUrl",
+                ServerUrl = "https://192.168.1.8/esp32/api",
                 WifiSsid = "wifiSsid",
                 WifiPwd = "wifiPwd",
                 ConnectorType = connectorTypes[0],

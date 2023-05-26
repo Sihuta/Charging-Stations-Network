@@ -77,10 +77,11 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
                 {
                     return;
                 }
-                await Task.Delay(3000);
 
                 ChargedEnergy = await chargingService.GetProgressAsync(station);
                 Progress = ChargedEnergy / RequestedEnergy;
+
+                await Task.Delay(2000);
             }
 
             await GoToTransactionDetailsAsync(ChargedEnergy);

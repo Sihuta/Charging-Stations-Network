@@ -12,7 +12,8 @@
         <StackLayout Orientation="Vertical"
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
-                     Spacing="20">
+                     Spacing="20"
+                     WidthRequest="200">
             <Label FontSize="16"
                    HorizontalOptions="Center"
                    >
