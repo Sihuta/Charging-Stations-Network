@@ -25,6 +25,7 @@ namespace ChargingStationsApp
             Routing.RegisterRoute(nameof(AddAdminPage), typeof(AddAdminPage));
 
             Routing.RegisterRoute(nameof(StartChargingPage), typeof(StartChargingPage));
+            Routing.RegisterRoute(nameof(ChargingProgressPage), typeof(ChargingProgressPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

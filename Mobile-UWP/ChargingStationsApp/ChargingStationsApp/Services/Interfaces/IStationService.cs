@@ -13,5 +13,6 @@ namespace ChargingStationsApp.Services.Interfaces
         Task<bool> DeleteStationAsync(int id);
 
         Task<ICollection<ConnectorType>> GetConnectorTypesAsync();
+        Task<Tariff> GetTariffForStationAsync(int stationId);
     }
 }

@@ -5,14 +5,14 @@ using Xamarin.Forms.Xaml;
 namespace ChargingStationsApp.Views.Client.Charging
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StartChargingPage : ContentPage
+    public partial class ChargingProgressPage : ContentPage
     {
-        private readonly StartChargingViewModel viewModel;
+        private readonly ChargingProgressViewModel viewModel;
 
-        public StartChargingPage()
+        public ChargingProgressPage()
         {
             InitializeComponent();
-            BindingContext = viewModel = new StartChargingViewModel();
+            BindingContext = viewModel = new ChargingProgressViewModel();
         }
 
         protected override async void OnAppearing()

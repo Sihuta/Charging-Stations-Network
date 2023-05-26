@@ -1,4 +1,5 @@
 ﻿using ChargingStationsApp.Models;
+using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
         private int transactionId;
         private Session session;
         private Tariff tariff;
+        private double requestedEnergy;
         private double chargedEnergy;
         private decimal pay;
         private DateTime startDateTime;
@@ -40,6 +42,12 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
         {
             get => tariff;
             set => SetProperty(ref tariff, value);
+        }
+
+        public double RequestedEnergy
+        {
+            get => requestedEnergy;
+            set => SetProperty(ref requestedEnergy, value);
         }
 
         public double ChargedEnergy
@@ -73,10 +81,13 @@ namespace ChargingStationsApp.ViewModels.Shared.Transactions
 
         private async Task LoadTransaction()
         {
-            var transaction = await transactionService.GetTransactionAsync(transactionId);
+            var transaction = transactionId > 0
+                ? await transactionService.GetTransactionAsync(transactionId)
+                : SessionInfo.LastTransaction;
 
             Session = transaction.Session;
             Tariff = transaction.Tariff;
+            RequestedEnergy = transaction.RequestedEnergy;
             ChargedEnergy = transaction.ChargedEnergy;
             StartDateTime = transaction.StartDateTime;
             EndDateTime = transaction.EndDateTime;

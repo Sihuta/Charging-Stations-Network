@@ -2,24 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             xmlns:models="clr-namespace:ChargingStationsApp.Models"
              xmlns:charging="clr-namespace:ChargingStationsApp.ViewModels.Client.Charging"
              x:DataType="charging:StationsMapViewModel"
              x:Class="ChargingStationsApp.Views.Client.Charging.StationsMapPage">
     <ContentPage.Content>
         <StackLayout>
             <maps:Map x:Name="map"
-                      ItemsSource="{Binding Stations}"
+                      ItemsSource="{Binding Pins}"
                       HasScrollEnabled="True"
                       HasZoomEnabled="True"
                       IsShowingUser="True"
                       MapType="Street"
                       >
                 <maps:Map.ItemTemplate>
-                    <DataTemplate x:DataType="models:MappedStation">
+                    <DataTemplate x:DataType="maps:Pin">
                         <maps:Pin Position="{Binding Position}"
-                                  Address="{Binding ConnectorType.Name}"
-                                  Label="{Binding Name}"
+                                  Address="{Binding Address}"
+                                  Label="{Binding Label}"
                                   Clicked="Pin_Clicked"
                                   />
                     </DataTemplate>

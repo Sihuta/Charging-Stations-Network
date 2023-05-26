@@ -79,5 +79,10 @@ namespace ChargingStationsApp.Services.Realizations
         {
             return await Task.FromResult(true);
         }
+
+        public async Task<Tariff> GetTariffForStationAsync(int stationId)
+        {
+            return await Task.FromResult(TransactionService.Tariff);
+        }
     }
 }

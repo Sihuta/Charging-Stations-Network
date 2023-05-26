@@ -22,45 +22,48 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
             stationService = DependencyService.Get<IStationService>();
             chargingService = DependencyService.Get<IChargingService>();
 
-            Stations = new ObservableCollection<MappedStation>();
+            Pins = new ObservableCollection<Pin>();
+            Stations = new ObservableCollection<Station>();
         }
 
-        public ObservableCollection<MappedStation> Stations { get; }
+        public ObservableCollection<Pin> Pins { get; }
+        public ObservableCollection<Station> Stations { get; }
 
         public async Task OnAppearingAsync()
         {
             var stations = await stationService.GetStationsAsync();
             foreach (var sta in stations)
             {
-                Stations.Add(new MappedStation
+                Stations.Add(sta);
+                Pins.Add(new Pin
                 {
-                    Name = sta.Name,
-                    Position = new Position(sta.Latitude, sta.Longitude),
-                    ConnectorType = sta.ConnectorType,
-                    State = sta.State
+                    Label = sta.Name,
+                    Address = sta.ConnectorType.Name,
+                    Position = new Position(sta.Latitude, sta.Longitude)
                 });
             }
         }
 
         public async Task OnStationTappedAsync(Pin pin)
         {
-            var station = Stations
-                .FirstOrDefault(sta => sta.Position == pin.Position);
-            if (await DisplayStationDetailsForConnection(station))
+            var station = Stations.FirstOrDefault(sta =>
+                sta.Latitude == pin.Position.Latitude &&
+                sta.Longitude == pin.Position.Longitude);
+
+            if (await DisplayStationDetailsForConnection(station) &&
+                await TryToConnectAsync(station))
             {
-                if (await TryToConnectAsync())
-                {
-                    await Shell.Current.GoToAsync(nameof(StartChargingPage));
-                }
+                await Shell.Current.GoToAsync(
+                    $"{nameof(StartChargingPage)}?{nameof(StartChargingViewModel.StationId)}={station.Id}");
             }
         }
 
-        private async Task<bool> TryToConnectAsync()
+        private async Task<bool> TryToConnectAsync(Station station)
         {
             const int prompts = 10;
             for (int i = 0; i < prompts; ++i)
             {
-                var connected = await chargingService.VehicleIsPluggedInAsync();
+                var connected = await chargingService.VehicleIsPluggedInAsync(station);
                 if (connected)
                 {
                     return true;
@@ -72,7 +75,7 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
             return false;
         }
 
-        private async Task<bool> DisplayStationDetailsForConnection(MappedStation sta)
+        private async Task<bool> DisplayStationDetailsForConnection(Station sta)
         {
             string title = TranslateExtension.GetValue("StationDetailsTitle");
             string state = TranslateExtension.GetValue($"State");

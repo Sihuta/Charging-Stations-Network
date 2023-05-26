@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:charging="clr-namespace:ChargingStationsApp.ViewModels.Client.Charging"
+             x:DataType="charging:ChargingProgressViewModel"
+             x:Class="ChargingStationsApp.Views.Client.Charging.ChargingProgressPage">
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"/>
+    </Shell.BackButtonBehavior>-->
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Spacing="20">
+            <Label FontSize="16"
+                   HorizontalOptions="Center"
+                   >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding ChargedEnergy, StringFormat='{0:F2}'}"/>
+                        <Span Text=" / "/>
+                        <Span Text="{Binding RequestedEnergy, StringFormat='{0:F2}'}" />
+                        <Span Text=" "/>
+                        <Span Text="{l10n:Translate EnergyUnit}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <ProgressBar Progress="{Binding Progress}"/>
+            <Button HorizontalOptions="Center"
+                    Text="{l10n:Translate StopChargingBtn}"
+                    Command="{Binding StopChargingCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

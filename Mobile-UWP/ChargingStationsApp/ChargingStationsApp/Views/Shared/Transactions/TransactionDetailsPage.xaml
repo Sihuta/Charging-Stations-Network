@@ -9,6 +9,30 @@
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="15">
             <StackLayout Orientation="Horizontal">
+                <Label Text="{l10n:Translate RequestedEnergy}" FontSize="16"/>
+                <Frame Padding="10"
+                       BorderColor="{StaticResource Primary}"
+                       WidthRequest="200"
+                       HorizontalOptions="EndAndExpand"
+                       >
+                    <Label LineBreakMode="NoWrap"
+                           Style="{DynamicResource ListItemTextStyle}"
+                           FontSize="16"
+                           HorizontalOptions="Start"
+                           FontAttributes="Italic"
+                           >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding RequestedEnergy, StringFormat='{0:F2}'}" />
+                                <Span Text=" "/>
+                                <Span Text="{l10n:Translate EnergyUnit}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Frame>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate ChargedEnergy}" FontSize="16"/>
                 <Frame Padding="10"
                        BorderColor="{StaticResource Primary}"
@@ -106,7 +130,7 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal">
+            <!--<StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate Location}" FontSize="16"/>
                 <Frame Padding="10"
                        BorderColor="{StaticResource Primary}"
@@ -130,7 +154,7 @@
                         </Label.FormattedText>
                     </Label>
                 </Frame>
-            </StackLayout>
+            </StackLayout>-->
             
             <StackLayout Orientation="Horizontal">
                 <Label Text="{l10n:Translate ChargingStart}" FontSize="16"/>

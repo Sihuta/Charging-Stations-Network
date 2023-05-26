@@ -1,12 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChargingStationsApp.Views.Client.Charging.StartChargingPage">
+             xmlns:l10n="clr-namespace:ChargingStationsApp.Localization"
+             xmlns:charging="clr-namespace:ChargingStationsApp.ViewModels.Client.Charging"
+             x:DataType="charging:StartChargingViewModel"
+             x:Class="ChargingStationsApp.Views.Client.Charging.StartChargingPage"
+             >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Spacing="10"
+                     Padding="15"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Label FontSize="16">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{l10n:Translate RequestedEnergy}"/>
+                            <Span Text=":"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Entry Text="{Binding RequestedEnergy}"
+                       Keyboard="Numeric"
+                       WidthRequest="150"
+                       Margin="0,5,0,0"
+                       />
+                <Label Text="{l10n:Translate EnergyUnit}"
+                       FontSize="16"/>
+            </StackLayout>
+            <StackLayout Margin="0, 10, 0, 0"
+                         HorizontalOptions="Center"
+                         >
+                <Label FontSize="16"
+                   HorizontalOptions="Center"
+                   FontAttributes="Italic"
+                   >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{l10n:Translate ApproximateTime}"/>
+                            <Span Text=": "/>
+                            <Span Text="{Binding ApproximateTime, StringFormat='{0:F2}'}" />
+                            <Span Text=" "/>
+                            <Span Text="{l10n:Translate HourUnit}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label FontSize="16"
+                   HorizontalOptions="Center"
+                   FontAttributes="Italic"
+                   >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{l10n:Translate Price}"/>
+                            <Span Text=": "/>
+                            <Span Text="{Binding Price, StringFormat='{0:F2}'}" />
+                            <Span Text=" "/>
+                            <Span Text="{l10n:Translate Currency}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="20" Margin="0, 20">
+                <Button Text="{l10n:Translate CancelBtn}" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="{l10n:Translate PayBtn}" Command="{Binding PayCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

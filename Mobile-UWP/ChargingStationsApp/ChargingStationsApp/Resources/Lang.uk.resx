@@ -132,6 +132,9 @@
   <data name="ApplyBtn" xml:space="preserve">
     <value>Застосувати</value>
   </data>
+  <data name="ApproximateTime" xml:space="preserve">
+    <value>Орієнтовний час</value>
+  </data>
   <data name="Ascending" xml:space="preserve">
     <value>Зростання</value>
   </data>
@@ -219,6 +222,9 @@
   <data name="From" xml:space="preserve">
     <value>З</value>
   </data>
+  <data name="HourUnit" xml:space="preserve">
+    <value>год</value>
+  </data>
   <data name="InvalidInputFillMsg" xml:space="preserve">
     <value>Заповніть усі поля.</value>
   </data>
@@ -282,14 +288,23 @@
   <data name="Pay" xml:space="preserve">
     <value>Оплата</value>
   </data>
+  <data name="PayBtn" xml:space="preserve">
+    <value>Сплатити</value>
+  </data>
   <data name="PowerUnit" xml:space="preserve">
     <value>кВт</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Вартість</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профіль</value>
   </data>
   <data name="ReadyState" xml:space="preserve">
     <value>Готова</value>
+  </data>
+  <data name="RequestedEnergy" xml:space="preserve">
+    <value>Задана кількість енергії</value>
   </data>
   <data name="Role" xml:space="preserve">
     <value>Роль</value>
@@ -332,6 +347,15 @@
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Станції</value>
+  </data>
+  <data name="StopChargingBtn" xml:space="preserve">
+    <value>Зупинити зарядку</value>
+  </data>
+  <data name="StopChargingMsg" xml:space="preserve">
+    <value>Ви впевнені, що хочете зупинити зарядку?</value>
+  </data>
+  <data name="StopChargingTitle" xml:space="preserve">
+    <value>Зупинка зарядки</value>
   </data>
   <data name="Tariff" xml:space="preserve">
     <value>Тариф</value>
