@@ -38,10 +38,7 @@ namespace ChargingStationsApp.ViewModels.Shared.Profile
         public int UserId
         {
             get => userId;
-            set
-            {
-                userId = value;
-            }
+            set => userId = value;
         }
 
         public string Email
@@ -99,6 +96,8 @@ namespace ChargingStationsApp.ViewModels.Shared.Profile
 
         private async void OnSaveClicked(object _)
         {
+            User.Id = userId;
+
             var saved = await userService.UpdateUserAsync(User);
             if (saved)
             {

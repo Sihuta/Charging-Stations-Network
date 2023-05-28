@@ -12,5 +12,7 @@ namespace ChargingStationsApp.Services.Interfaces
         Task<ICollection<Transaction>> GetTransactionsByStationAsync(string stationName);
         Task<ICollection<Transaction>> GetTransactionsByStationAsync(string stationName, DateTime dateFrom, DateTime dateTo);
         Task<Transaction> GetTransactionAsync(int id);
+        Task<Transaction> CreateTransactionAsync(Transaction transaction);
+        Task<bool> UpdateTransactionAsync(Transaction transaction);
     }
 }

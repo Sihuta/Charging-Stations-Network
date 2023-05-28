@@ -2,6 +2,7 @@
 using ChargingStationsApp.Models;
 using ChargingStationsApp.Services.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChargingStationsApp.Services.Realizations
@@ -12,12 +13,12 @@ namespace ChargingStationsApp.Services.Realizations
         {
             new ConnectorType
             {
-                Name = "Connector Type 1",
+                Name = "SAE J1772 Type 1",
                 MaxPower = 7
             },
             new ConnectorType
             {
-                Name = "Connector Type 2",
+                Name = "IEC 62196 Type 2",
                 MaxPower = 21
             }
         };
@@ -33,30 +34,25 @@ namespace ChargingStationsApp.Services.Realizations
                 ServerUrl = "https://192.168.1.8/esp32/api",
                 WifiSsid = "wifiSsid",
                 WifiPwd = "wifiPwd",
-                ConnectorType = connectorTypes[0],
+                ConnectorType = connectorTypes[1],
                 State = StationState.Ready
             },
-            //new Station
-            //{
-            //    Id = 2,
-            //    Name = "Station 2",
-            //    Latitude = 50.0140603,
-            //    Longitude = 36.2274672,
-            //    ServerUrl = "serverUrl",
-            //    WifiSsid = "wifiSsid",
-            //    WifiPwd = "wifiPwd",
-            //    ConnectorType = connectorTypes[1],
-            //    State = StationState.Error
-            //}
         };
 
         public async Task<int> CreateStationAsync(Station station)
         {
-            return await Task.FromResult(1);
+            int id = Stations.Last().Id + 1;
+            station.Id = id;
+            Stations.Add(station);
+
+            return await Task.FromResult(id);
         }
 
         public async Task<bool> DeleteStationAsync(int id)
         {
+            var ind = Stations.FindIndex(s => s.Id == id);
+            Stations.RemoveAt(ind);
+
             return await Task.FromResult(true);
         }
 
@@ -67,7 +63,8 @@ namespace ChargingStationsApp.Services.Realizations
 
         public async Task<Station> GetStationAsync(int id)
         {
-            return await Task.FromResult(Stations.Find(sta => sta.Id == id));
+            return await Task.FromResult(
+                Stations.Find(sta => sta.Id == id));
         }
 
         public async Task<ICollection<Station>> GetStationsAsync()
@@ -77,6 +74,13 @@ namespace ChargingStationsApp.Services.Realizations
 
         public async Task<bool> UpdateStationAsync(Station station)
         {
+            var updStation = Stations.Find(s => s.Id == station.Id);
+
+            updStation.Name = station.Name;
+            updStation.Latitude = station.Latitude;
+            updStation.Longitude = station.Longitude;
+            updStation.ConnectorType = station.ConnectorType;
+
             return await Task.FromResult(true);
         }
 

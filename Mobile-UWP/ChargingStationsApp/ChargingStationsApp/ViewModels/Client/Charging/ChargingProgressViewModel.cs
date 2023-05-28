@@ -23,12 +23,16 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         private readonly IStationService stationService;
         private readonly IChargingService chargingService;
+        private readonly ITransactionService transactionService;
+
         private readonly CancellationTokenSource cancellationTokenSource;
 
         public ChargingProgressViewModel()
         {
             stationService = DependencyService.Get<IStationService>();
             chargingService = DependencyService.Get<IChargingService>();
+            transactionService = DependencyService.Get<ITransactionService>();
+
             cancellationTokenSource = new CancellationTokenSource();
 
             StopChargingCommand = new Command(
@@ -101,14 +105,16 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         private async Task GoToTransactionDetailsAsync(double chargedEnergy)
         {
-            var trans = SessionInfo.LastTransaction;
+            var transaction = SessionInfo.LastTransaction;
 
-            trans.EndDateTime = System.DateTime.Now;
-            trans.ChargedEnergy = chargedEnergy;
+            transaction.EndDateTime = System.DateTime.Now;
+            transaction.ChargedEnergy = chargedEnergy;
+
+            await transactionService.UpdateTransactionAsync(transaction);
 
             await Shell.Current.GoToAsync("../..");
             await Shell.Current.GoToAsync($"///{nameof(TransactionsPage)}/" +
-                $"{nameof(TransactionDetailsPage)}?{nameof(TransactionDetailsViewModel.TransactionId)}={trans.Id}");
+                $"{nameof(TransactionDetailsPage)}?{nameof(TransactionDetailsViewModel.TransactionId)}={transaction.Id}");
         }
     }
 }

@@ -22,11 +22,13 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         private readonly IStationService stationService;
         private readonly IChargingService chargingService;
+        private readonly ITransactionService transactionService;
 
         public StartChargingViewModel()
         {
             stationService = DependencyService.Get<IStationService>();
             chargingService = DependencyService.Get<IChargingService>();
+            transactionService = DependencyService.Get<ITransactionService>();
 
             CancelCommand = new Command(async (_) => await OnCancelCommandAsync());
             PayCommand = new Command(
@@ -76,7 +78,7 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         private async Task OnPayCommandAsync()
         {
-            SessionInfo.LastTransaction = new Transaction
+            var transaction = new Transaction
             {
                 Session = new Session
                 {
@@ -88,11 +90,17 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
                 StartDateTime = DateTime.Now,
             };
 
-            if (await chargingService.RequestPaymentAsync(SessionInfo.LastTransaction) &&
-                await chargingService.StartChargingAsync(station, requestedEnergy))
+            if (await chargingService.RequestPaymentAsync(transaction))
             {
-                await Shell.Current.GoToAsync(
-                    $"{nameof(ChargingProgressPage)}?{nameof(ChargingProgressViewModel.StationId)}={station.Id}");
+                SessionInfo.LastTransaction = await transactionService
+                    .CreateTransactionAsync(transaction);
+
+                if (await chargingService
+                    .StartChargingAsync(station, requestedEnergy))
+                {
+                    await Shell.Current.GoToAsync(
+                        $"{nameof(ChargingProgressPage)}?{nameof(ChargingProgressViewModel.StationId)}={station.Id}");
+                }
             }
         }
 

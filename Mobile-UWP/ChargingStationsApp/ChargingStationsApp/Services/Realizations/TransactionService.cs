@@ -13,17 +13,32 @@ namespace ChargingStationsApp.Services.Realizations
         public static readonly Tariff Tariff = new Tariff
         {
             Id = 1,
-            Name = "Tariff",
-            Price = 1.69M,
+            Name = "Standard",
+            Price = 9.69M,
             StartDate = new DateTime(2023, 4, 18),
             EndDate = new DateTime(2024, 4, 18)
         };
 
-        private static readonly Session session = new Session
+        private static readonly List<Session> sessions = new List<Session>
         {
-            Id = 1,
-            UserId = 1,
-            Station = StationService.Stations[0]
+            new Session
+            {
+                Id = 1,
+                UserId = 1,
+                Station = StationService.Stations[0]
+            },
+            new Session
+            {
+                Id = 2,
+                UserId = 1,
+                Station = StationService.Stations[0]
+            },
+            new Session
+            {
+                Id = 3,
+                UserId = 1,
+                Station = StationService.Stations[0]
+            },
         };
 
         private static readonly List<Transaction> transactions = new List<Transaction>
@@ -31,8 +46,9 @@ namespace ChargingStationsApp.Services.Realizations
             new Transaction
             {
                 Id = 1,
-                Session = session,
+                Session = sessions[0],
                 Tariff = Tariff,
+                RequestedEnergy = 12,
                 ChargedEnergy = 10.5,
                 StartDateTime = new DateTime(2023, 4, 17, 16, 41, 0),
                 EndDateTime = new DateTime(2023, 4, 17, 17, 41, 0)
@@ -40,8 +56,9 @@ namespace ChargingStationsApp.Services.Realizations
             new Transaction
             {
                 Id = 2,
-                Session = session,
+                Session = sessions[1],
                 Tariff = Tariff,
+                RequestedEnergy = 23,
                 ChargedEnergy = 20.5,
                 StartDateTime = new DateTime(2023, 4, 18, 16, 41, 0),
                 EndDateTime = new DateTime(2023, 4, 18, 17, 41, 0)
@@ -49,17 +66,27 @@ namespace ChargingStationsApp.Services.Realizations
             new Transaction
             {
                 Id = 3,
-                Session = session,
+                Session = sessions[2],
                 Tariff = Tariff,
+                RequestedEnergy = 15.5,
                 ChargedEnergy = 15.5,
                 StartDateTime = new DateTime(2023, 4, 19, 16, 41, 0),
                 EndDateTime = new DateTime(2023, 4, 19, 17, 41, 0)
             }
         };
 
+        public async Task<Transaction> CreateTransactionAsync(Transaction transaction)
+        {
+            transaction.Id = transactions.Last().Id + 1;
+            transactions.Add(transaction);
+
+            return await Task.FromResult(transaction);
+        }
+
         public async Task<Transaction> GetTransactionAsync(int id)
         {
-            return await Task.FromResult(transactions.Find(t => t.Id == id));
+            return await Task.FromResult(
+                transactions.Find(t => t.Id == id));
         }
 
         public async Task<ICollection<Transaction>> GetTransactionsAsync()
@@ -94,6 +121,20 @@ namespace ChargingStationsApp.Services.Realizations
             return transactions
                 .Where(tr => tr.StartDateTime.Date >= dateFrom && tr.EndDateTime.Date <= dateTo)
                 .ToList();
+        }
+
+        public async Task<bool> UpdateTransactionAsync(Transaction transaction)
+        {
+            var updTransaction = transactions.Find(t => t.Id == transaction.Id);
+
+            updTransaction.Tariff = transaction.Tariff;
+            updTransaction.StartDateTime = transaction.StartDateTime;
+            updTransaction.EndDateTime = transaction.EndDateTime;
+            updTransaction.ChargedEnergy = transaction.ChargedEnergy;
+            updTransaction.RequestedEnergy = transaction.RequestedEnergy;
+            updTransaction.Session = updTransaction.Session;
+
+            return await Task.FromResult(true);
         }
     }
 }
