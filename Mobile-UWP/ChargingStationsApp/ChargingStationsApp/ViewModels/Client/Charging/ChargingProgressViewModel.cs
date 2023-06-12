@@ -112,7 +112,7 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
             await transactionService.UpdateTransactionAsync(transaction);
 
-            await Shell.Current.GoToAsync("../..");
+            await Shell.Current.GoToAsync("../../..");
             await Shell.Current.GoToAsync($"///{nameof(TransactionsPage)}/" +
                 $"{nameof(TransactionDetailsPage)}?{nameof(TransactionDetailsViewModel.TransactionId)}={transaction.Id}");
         }

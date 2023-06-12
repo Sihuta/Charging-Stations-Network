@@ -270,6 +270,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Вийти</value>
   </data>
+  <data name="LogoutBtn" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
   <data name="Longtitude" xml:space="preserve">
     <value>Довгота</value>
   </data>

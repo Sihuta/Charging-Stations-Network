@@ -1,7 +1,6 @@
 ﻿using ChargingStationsApp.Views.Admin.Admins;
 using ChargingStationsApp.Views.Admin.Stations;
 using ChargingStationsApp.Views.Client.Charging;
-using ChargingStationsApp.Views.Shared;
 using ChargingStationsApp.Views.Shared.Auth;
 using ChargingStationsApp.Views.Shared.Profile;
 using ChargingStationsApp.Views.Shared.Transactions;
@@ -28,6 +27,7 @@ namespace ChargingStationsApp
             Routing.RegisterRoute(nameof(AddAdminPage), typeof(AddAdminPage));
 
             Routing.RegisterRoute(nameof(StartChargingPage), typeof(StartChargingPage));
+            Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
             Routing.RegisterRoute(nameof(ChargingProgressPage), typeof(ChargingProgressPage));
         }
 

@@ -14,9 +14,9 @@ namespace ChargingStationsApp.Services.Realizations
             return await Task.FromResult(++progress);
         }
 
-        public async Task<bool> RequestPaymentAsync(Transaction transaction)
+        public async Task<string> RequestPaymentAsync(Transaction transaction)
         {
-            return await Task.FromResult(true);
+            return await Task.FromResult("");
         }
 
         public async Task<bool> StartChargingAsync(Station station, double requestedEnergy)

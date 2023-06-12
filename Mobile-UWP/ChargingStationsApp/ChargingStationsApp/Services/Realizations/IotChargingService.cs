@@ -33,10 +33,12 @@ namespace ChargingStationsApp.Services.Realizations
             return progress;
         }
 
-        public async Task<bool> RequestPaymentAsync(Transaction transaction)
+        public async Task<string> RequestPaymentAsync(Transaction transaction)
         {
-            // TODO
-            return await Task.FromResult(true);
+            const string reqUrl = "https://www.liqpay.ua/api/3/checkout?data=eyJ2ZXJzaW9uIjozLCJhY3Rpb24iOiJwYXkiLCJhbW91bnQiOiI5Ni45MCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiJDaGFyZ2luZyBTZXJ2aWNlIiwicHVibGljX2tleSI6InNhbmRib3hfaTg0MTE2OTk5NDcwIiwibGFuZ3VhZ2UiOiJ1ayIsInNlcnZlcl91cmwiOiJodHRwczovLzE5Mi4xNjguMS43OjQ1NDU1L2FwaS9wYXltZW50In0=&signature=HDb7CvNDqhmYfjL0d4atWLs0cLU=";
+            var response = await httpClient.GetAsync(reqUrl);
+
+            return response.RequestMessage.RequestUri.ToString();
         }
 
         public async Task<bool> StartChargingAsync(Station station, double requestedEnergy)

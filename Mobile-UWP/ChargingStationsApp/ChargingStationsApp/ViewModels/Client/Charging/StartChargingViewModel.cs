@@ -90,18 +90,14 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
                 StartDateTime = DateTime.Now,
             };
 
-            if (await chargingService.RequestPaymentAsync(transaction))
-            {
-                SessionInfo.LastTransaction = await transactionService
+            SessionInfo.LastTransaction = await transactionService
                     .CreateTransactionAsync(transaction);
 
-                if (await chargingService
-                    .StartChargingAsync(station, requestedEnergy))
-                {
-                    await Shell.Current.GoToAsync(
-                        $"{nameof(ChargingProgressPage)}?{nameof(ChargingProgressViewModel.StationId)}={station.Id}");
-                }
-            }
+            var redirectedUrl = await chargingService.RequestPaymentAsync(transaction);
+            await Shell.Current.GoToAsync(
+                $"{nameof(PaymentPage)}" +
+                $"?{nameof(PaymentViewModel.StationId)}={stationId}" +
+                $"&{nameof(PaymentViewModel.RedirectedUrl)}={redirectedUrl}");
         }
 
         private bool ValidatePay(object _)

@@ -369,7 +369,6 @@ static esp_err_t start_charging_post_handler(httpd_req_t *req)
     char requested_energy[REQ_ENERGY_MAX_LENGTH];
     strcpy(requested_energy, req->uri + strlen(START_CHARGING_URI));
 
-    // start timer to stimulate charging
     uint32_t requested = strtoul(requested_energy, NULL, 10);
     ESP_LOGI(TAG, "Requested energy - %d", requested);
     start_charging_timer(requested);
@@ -461,12 +460,6 @@ static const httpd_uri_t root = {
     .method    = HTTP_GET,
     .handler   = root_get_handler
 };
-
-// static const httpd_uri_t favicon = {
-//     .uri       = "/favicon.ico",
-//     .method    = HTTP_GET,
-//     .handler   = favicon_get_handler
-// };
 
 static const httpd_uri_t backend_url = {
     .uri       = BACKEND_URL_URI"*",

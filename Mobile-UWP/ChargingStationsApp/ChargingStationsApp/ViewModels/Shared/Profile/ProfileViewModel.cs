@@ -2,6 +2,7 @@
 using ChargingStationsApp.Models;
 using ChargingStationsApp.Services;
 using ChargingStationsApp.Services.Interfaces;
+using ChargingStationsApp.Views.Client.Charging;
 using ChargingStationsApp.Views.Shared.Profile;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -24,12 +25,14 @@ namespace ChargingStationsApp.ViewModels.Shared.Profile
             User = new User();
             userService = DependencyService.Get<IUserService>();
 
+            LogoutCommand = new Command(OnLogoutClicked);
             ChangePasswordCommand = new Command(OnChangePasswordClicked);
             SaveCommand = new Command(OnSaveClicked, ValidateSave);
             PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
+        public Command LogoutCommand { get; }
         public Command SaveCommand { get; }
         public Command ChangePasswordCommand { get; }
 
@@ -74,6 +77,12 @@ namespace ChargingStationsApp.ViewModels.Shared.Profile
         internal async Task OnAppearing()
         {
             await LoadUserAsync(userId);
+        }
+
+        private void OnLogoutClicked()
+        {
+            SessionInfo.Logout();
+            Application.Current.MainPage = new StationsMapPage();
         }
 
         private async Task LoadUserAsync(int id)
