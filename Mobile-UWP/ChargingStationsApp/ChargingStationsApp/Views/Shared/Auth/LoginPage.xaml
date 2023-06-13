@@ -25,6 +25,11 @@
                    IsPassword="True"
                    HorizontalTextAlignment="Start"
                            />
+            <Button Text="{l10n:Translate ForgotPassword}"
+                    Command="{Binding ForgotPasswordCommand}"
+                    HorizontalOptions="Center"
+                    Margin="0, 10"
+                    />
             <StackLayout Orientation="Horizontal"
                          Spacing="20"
                          >

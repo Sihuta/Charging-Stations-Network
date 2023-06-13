@@ -204,6 +204,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="EmailFailMsg" xml:space="preserve">
+    <value>User with such email not found.</value>
+  </data>
   <data name="EmptyListMsg" xml:space="preserve">
     <value>The list is empty.</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="FailTitle" xml:space="preserve">
     <value>Fail</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="ForgotPwdSuccess" xml:space="preserve">
+    <value>New password was sent on your email.</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
@@ -262,7 +271,7 @@
     <value>Log in</value>
   </data>
   <data name="LoginFailMsg" xml:space="preserve">
-    <value>There is no user with such login and password.</value>
+    <value>There is no user with such email and password.</value>
   </data>
   <data name="LoginFailTitle" xml:space="preserve">
     <value>Invalid input</value>

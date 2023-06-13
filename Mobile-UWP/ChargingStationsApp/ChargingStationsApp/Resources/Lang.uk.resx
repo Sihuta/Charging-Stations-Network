@@ -204,6 +204,9 @@
   <data name="Email" xml:space="preserve">
     <value>Електронна пошта</value>
   </data>
+  <data name="EmailFailMsg" xml:space="preserve">
+    <value>Користувача з такою електронною поштою не знайдено.</value>
+  </data>
   <data name="EmptyListMsg" xml:space="preserve">
     <value>Даний список порожній.</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="FailTitle" xml:space="preserve">
     <value>Невдача</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забули пароль?</value>
+  </data>
+  <data name="ForgotPwdSuccess" xml:space="preserve">
+    <value>Новий пароль було надіслано на вашу пошту.</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>З</value>
@@ -262,7 +271,7 @@
     <value>Увійти</value>
   </data>
   <data name="LoginFailMsg" xml:space="preserve">
-    <value>Користувача з даними логіном та паролем не знайдено.</value>
+    <value>Користувача з такою електронною поштою та паролем не знайдено.</value>
   </data>
   <data name="LoginFailTitle" xml:space="preserve">
     <value>Некоректні вхідні дані</value>

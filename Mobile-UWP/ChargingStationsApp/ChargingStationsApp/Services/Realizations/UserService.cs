@@ -86,5 +86,11 @@ namespace ChargingStationsApp.Services.Realizations
 
             return await Task.FromResult(true);
         }
+
+        public async Task<bool> UserExists(string email)
+        {
+            var res = users.Any(u => u.Email == email);
+            return await Task.FromResult(res);
+        }
     }
 }

@@ -20,6 +20,7 @@
                             </VisualState>
                             <VisualState x:Name="Disabled">
                                 <VisualState.Setters>
+                                    <!--<Setter Property="TextColor" Value="White"/>-->
                                     <Setter Property="BackgroundColor" Value="#332196F3" />
                                 </VisualState.Setters>
                             </VisualState>
