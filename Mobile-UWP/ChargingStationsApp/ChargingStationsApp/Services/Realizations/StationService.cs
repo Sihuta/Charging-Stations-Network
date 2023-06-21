@@ -13,12 +13,12 @@ namespace ChargingStationsApp.Services.Realizations
         {
             new ConnectorType
             {
-                Name = "SAE J1772 Type 1",
+                Name = "SAE J1772 Тип 1",
                 MaxPower = 7
             },
             new ConnectorType
             {
-                Name = "IEC 62196 Type 2",
+                Name = "IEC 62196 Тип 2",
                 MaxPower = 21
             }
         };
@@ -28,7 +28,7 @@ namespace ChargingStationsApp.Services.Realizations
             new Station
             {
                 Id = 1,
-                Name = "Station 1",
+                Name = "Station 2",
                 Latitude = 50.0156448,
                 Longitude = 36.2270381,
                 ServerUrl = "https://192.168.1.8/esp32/api",

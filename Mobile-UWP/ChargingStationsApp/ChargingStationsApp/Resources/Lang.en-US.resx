@@ -354,6 +354,9 @@
   <data name="SortBy" xml:space="preserve">
     <value>Sort by</value>
   </data>
+  <data name="StaChargingMsg" xml:space="preserve">
+    <value>Station is unavailable due to charging process. Try again later.</value>
+  </data>
   <data name="State" xml:space="preserve">
     <value>State</value>
   </data>

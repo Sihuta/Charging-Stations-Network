@@ -13,7 +13,7 @@ namespace ChargingStationsApp.Services.Realizations
         public static readonly Tariff Tariff = new Tariff
         {
             Id = 1,
-            Name = "Standard",
+            Name = "Стандартний",
             Price = 9.69M,
             StartDate = new DateTime(2023, 4, 18),
             EndDate = new DateTime(2024, 4, 18)

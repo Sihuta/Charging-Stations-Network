@@ -354,6 +354,9 @@
   <data name="SortBy" xml:space="preserve">
     <value>Сортувати за</value>
   </data>
+  <data name="StaChargingMsg" xml:space="preserve">
+    <value>Станція недоступна до нових підключень, оскільки здійснює зарядку. Спробуйте пізніше.</value>
+  </data>
   <data name="State" xml:space="preserve">
     <value>Статус</value>
   </data>

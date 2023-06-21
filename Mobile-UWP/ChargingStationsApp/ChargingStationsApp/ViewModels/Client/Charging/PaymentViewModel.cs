@@ -35,7 +35,7 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         public async Task OnAppearingAsync()
         {
-            await Task.Delay(5000);
+            await Task.Delay(20000);
 
             var station = SessionInfo.LastTransaction.Session.Station;
             var requestedEnergy = SessionInfo.LastTransaction.RequestedEnergy;

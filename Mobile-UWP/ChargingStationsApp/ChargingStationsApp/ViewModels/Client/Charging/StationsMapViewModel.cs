@@ -1,4 +1,5 @@
-﻿using ChargingStationsApp.Extensions;
+﻿using ChargingStationsApp.Enums;
+using ChargingStationsApp.Extensions;
 using ChargingStationsApp.Localization;
 using ChargingStationsApp.Models;
 using ChargingStationsApp.Services;
@@ -53,16 +54,14 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
 
         public async Task OnStationTappedAsync(Pin pin)
         {
-            var station = Stations.FirstOrDefault(sta =>
-                sta.Latitude == pin.Position.Latitude &&
-                sta.Longitude == pin.Position.Longitude);
+            var station = GetStationByPin(pin);
 
             if (await DisplayStationDetailsForConnection(station))
             {
                 if (SessionInfo.IsGuest)
                 {
                     await Application.Current.MainPage.DisplayLocalizedAlert(
-                        "GuestConnectionTitle", "GuestConnectionMsg");
+                        "GuestConnectionTitle", "StaChargingMsg");
                 }
                 else if (await TryToConnectAsync(station))
                 {
@@ -113,6 +112,19 @@ namespace ChargingStationsApp.ViewModels.Client.Charging
         private void OnLoginClicked(object _)
         {
             Application.Current.MainPage = new LoginPage();
+        }
+
+        private Station GetStationByPin(Pin pin)
+        {
+            var station = Stations.FirstOrDefault(sta =>
+                sta.Latitude == pin.Position.Latitude &&
+                sta.Longitude == pin.Position.Longitude);
+
+            station.State = SessionInfo.IsGuest
+                    ? StationState.Charging
+                    : StationState.Ready;
+
+            return station;
         }
     }
 }

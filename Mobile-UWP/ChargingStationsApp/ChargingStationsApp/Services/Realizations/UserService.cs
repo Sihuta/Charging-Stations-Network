@@ -13,14 +13,14 @@ namespace ChargingStationsApp.Services.Realizations
             new User
             {
                 Id = 1,
-                Email = "client@example.com",
+                Email = "client@gmail.com",
                 Password = "12345678",
                 Role = "client"
             },
             new User
             {
                 Id = 2,
-                Email = "admin@example.com",
+                Email = "admin@gmail.com",
                 Password = "12345678",
                 Role = "admin"
             },
